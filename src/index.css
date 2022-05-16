@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta');
+
 :root {
   --dark-green: hsl(121, 31%, 44%);
   --green: hsl(108, 35%, 60%);
@@ -6,6 +8,7 @@
 
 html {
   box-sizing: border-box;
+  font-family: 'Mukta', sans-serif;
 }
 
 *,
@@ -49,6 +52,22 @@ a:active {
   display: none;
 }
 
+footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  top: calc(100% - 30px);
+  width: 100%;
+  padding: 8px;
+  height: 30px;
+  background-color: var(--dark-green);
+}
+
+.license-rights {
+  font-size: 10px;
+}
+
 @media screen and (min-width: 768px) {
   .navbar {
     justify-content: space-evenly;
@@ -60,5 +79,9 @@ a:active {
 
   .navbar__hamburger {
     display: none;
+  }
+
+  .license-rights {
+    font-size: 14px;
   }
 }
