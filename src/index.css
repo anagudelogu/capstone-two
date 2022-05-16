@@ -1,0 +1,64 @@
+:root {
+  --dark-green: hsl(121, 31%, 44%);
+  --green: hsl(108, 35%, 60%);
+  --light-green: hsl(68, 59%, 85%);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  background-color: var(--dark-green);
+  position: fixed;
+  width: 100%;
+}
+
+.navbar__logo i {
+  font-size: 3rem;
+}
+
+.navbar__recipes {
+  display: none;
+  font-size: 2rem;
+}
+
+.navbar__hamburger :nth-child(2) {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    justify-content: space-evenly;
+  }
+
+  .navbar__recipes {
+    display: block;
+  }
+
+  .navbar__hamburger {
+    display: none;
+  }
+}
