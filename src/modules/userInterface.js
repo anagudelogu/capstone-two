@@ -2,11 +2,7 @@ const recipeList = document.querySelector('.recipes__list');
 
 export default class UserInterface {
   static displayRecipes(mealsArr) {
-    try {
-      mealsArr.forEach((recipe) => this.createRecipeCard(recipe));
-    } catch (error) {
-      throw new Error(error);
-    }
+    mealsArr.forEach((recipe) => this.createRecipeCard(recipe));
   }
 
   static createRecipeCard({ strMeal = '', strMealThumb = '' }) {
