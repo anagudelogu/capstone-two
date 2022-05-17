@@ -29,6 +29,7 @@ a:active {
 }
 
 .navbar {
+  height: 50px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -36,6 +37,7 @@ a:active {
   align-items: center;
   background-color: var(--dark-green);
   position: fixed;
+  top: 0;
   width: 100%;
 }
 
@@ -50,6 +52,62 @@ a:active {
 
 .navbar__hamburger :nth-child(2) {
   display: none;
+}
+
+.recipes {
+  margin: 80px auto;
+  width: 90%;
+}
+
+.recipes__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.recipes__card {
+  display: flex;
+  margin: 1.5%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.recipes__image {
+  width: 100%;
+}
+
+.recipes__content {
+  width: 100%;
+  padding-inline: 20px;
+}
+
+.recipes__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipes__title {
+  font-size: 1.3rem;
+}
+
+.recipes__likes {
+  display: block;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.recipes__comments,
+.recipes__reservations {
+  display: block;
+  width: 70%;
+  margin: 10px auto;
+  padding: 5px 10px;
 }
 
 footer {
@@ -70,6 +128,7 @@ footer {
 
 @media screen and (min-width: 768px) {
   .navbar {
+    height: 70px;
     justify-content: space-evenly;
   }
 
@@ -83,5 +142,59 @@ footer {
 
   .license-rights {
     font-size: 14px;
+  }
+
+  .recipes {
+    margin-top: 100px;
+    justify-content: flex-start;
+    margin-bottom: 100px;
+  }
+
+  .recipes__list {
+    justify-content: flex-start;
+    margin: 0 auto;
+  }
+
+  .recipes__card {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  .recipes__image {
+    width: 100%;
+  }
+
+  .recipes__content {
+    width: 100%;
+    padding-inline: 20px;
+  }
+
+  .recipes__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .recipes__title {
+    font-size: 1.3rem;
+  }
+
+  .recipes__likes {
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 20px;
+  }
+
+  .recipes__comments,
+  .recipes__reservations {
+    display: block;
+    width: 70%;
+    margin: 10px auto;
+    padding: 5px 10px;
   }
 }
