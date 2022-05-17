@@ -1,15 +1,8 @@
-import MealAPI from './mealAPI.js';
-
 const recipeList = document.querySelector('.recipes__list');
 
 export default class UserInterface {
-  static async displayRecipes() {
-    try {
-      const pasta = await MealAPI.getByCategory('Pasta');
-      pasta.forEach((recipe) => this.createRecipeCard(recipe));
-    } catch (error) {
-      throw new Error(error);
-    }
+  static displayRecipes(mealsArr) {
+    mealsArr.forEach((recipe) => this.createRecipeCard(recipe));
   }
 
   static createRecipeCard({ strMeal = '', strMealThumb = '' }) {
