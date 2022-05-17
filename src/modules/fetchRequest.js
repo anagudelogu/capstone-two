@@ -29,6 +29,7 @@ export default class FetchRequest {
       };
 
       const response = await fetch(this.url, options);
+      if (response.status === 201) return;
       const data = await response.json();
       return data;
     } catch (error) {
