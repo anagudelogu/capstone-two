@@ -3,10 +3,9 @@ import MealAPI from './mealAPI.js';
 const recipeList = document.querySelector('.recipes__list');
 
 export default class UserInterface {
-  static async displayRecipes() {
+  static displayRecipes(mealsArr) {
     try {
-      const pasta = await MealAPI.getByCategory('Pasta');
-      pasta.forEach((recipe) => this.createRecipeCard(recipe));
+      mealsArr.forEach((recipe) => this.createRecipeCard(recipe));
     } catch (error) {
       throw new Error(error);
     }
