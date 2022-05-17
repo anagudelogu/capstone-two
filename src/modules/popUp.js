@@ -10,7 +10,7 @@ export default class PopUp {
     container.setAttribute('class', 'recipes__popup');
 
     const commentSection = PopUp.commentsTemplate(this.data.type);
-    const reviewSection = PopUp.reviewsTemplate(this.data.type);
+    const reservationSection = PopUp.reservationsTemplate(this.data.type);
 
     container.innerHTML = `
       <img class="recipes__popup_image" src="${this.data.strMealThumb}" alt="Delicious ${this.data.strMeal}">
@@ -18,7 +18,7 @@ export default class PopUp {
       <h2>${this.data.strMeal}</h2>
       
       ${commentSection}
-      ${reviewSection}
+      ${reservationSection}
     `;
     container.querySelector('i').addEventListener('click', () => {
       container.remove();
@@ -37,7 +37,7 @@ export default class PopUp {
           </span>
           <span class="recipes__popup_comment-content">
             ${comment.comment}
-          </span>
+          </span>-
           <span class="recipes__popup_comment-date">
             ${comment.creation_date}
           </span>
@@ -55,8 +55,8 @@ export default class PopUp {
     `;
   }
 
-  static reviewsTemplate(type) {
-    if (type !== 'Category') return '';
+  static reservationsTemplate(type) {
+    if (type !== 'Reservation') return '';
     return '';
   }
 

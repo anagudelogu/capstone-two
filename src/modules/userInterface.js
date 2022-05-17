@@ -53,6 +53,11 @@ export default class UserInterface {
       PopUp.pop({strMeal, strMealThumb, idMeal, comments, type: 'Recipe'})
     });
 
+    const openReservations = LI.querySelector('.recipes__reservations');
+    openReservations.addEventListener('click', () => {
+      PopUp.pop({strMeal, strMealThumb, idMeal, type: 'Reservation'})
+    });
+
     recipeList.appendChild(LI);
   }
 }
