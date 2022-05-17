@@ -6,6 +6,7 @@ export default class FetchRequest {
   headers;
 
   url;
+
   constructor({
     method = 'GET',
     body,
@@ -29,7 +30,7 @@ export default class FetchRequest {
       };
 
       const response = await fetch(this.url, options);
-      if (response.status === 201) return;
+      if (response.status === 201) return null;
       const data = await response.json();
       return data;
     } catch (error) {

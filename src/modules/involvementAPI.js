@@ -1,7 +1,7 @@
 // MBxSJyVQ8zQzuxBkwa5m
 // IlF5vbTwnxZ2cdpiiJ2c
 // 1OLlwvrPFTOZoc7KZ6ji
-import FetchRequest from './fetchRequest';
+import FetchRequest from './fetchRequest.js';
 
 const appId = 'IlF5vbTwnxZ2cdpiiJ2c';
 const urlMAP = {
