@@ -1,4 +1,3 @@
-import MealAPI from './mealAPI.js';
 import PopUp from './popUp.js';
 
 const recipeList = document.querySelector('.recipes__list');
