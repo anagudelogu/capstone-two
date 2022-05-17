@@ -3,14 +3,7 @@ export default class FetchRequest {
   body;
   headers;
   url;
-  constructor({
-    method = 'GET',
-    body,
-    url = '',
-    headers = {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  } = {}) {
+  constructor({ method = 'GET', body, url = '', headers } = {}) {
     this.method = method;
     this.body = body;
     this.headers = headers;
