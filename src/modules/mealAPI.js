@@ -9,22 +9,36 @@ const urlMap = {
 
 export default class MealAPI {
   static async getRandomRecipe() {
-    const fetchRequest = new FetchRequest({ url: urlMap.random });
-    const data = await fetchRequest.call();
-    return data.meals[0];
+    try {
+      const fetchRequest = new FetchRequest({ url: urlMap.random });
+      const data = await fetchRequest.call();
+      return data.meals[0];
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   static async getCategories() {
-    const fetchRequest = new FetchRequest({ url: urlMap.categories });
-    const categories = await fetchRequest.call();
-    return categories.categories;
+    try {
+      const fetchRequest = new FetchRequest({
+        url: urlMap.categories,
+      });
+      const categories = await fetchRequest.call();
+      return categories.categories;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   static async getByCategory(category) {
-    const fetchRequest = new FetchRequest({
-      url: `${urlMap.byCategory}${category}`,
-    });
-    const recipes = await fetchRequest.call();
-    return recipes.meals;
+    try {
+      const fetchRequest = new FetchRequest({
+        url: `${urlMap.byCategory}${category}`,
+      });
+      const recipes = await fetchRequest.call();
+      return recipes.meals;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
