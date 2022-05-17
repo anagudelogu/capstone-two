@@ -110,6 +110,24 @@ a:active {
   padding: 5px 10px;
 }
 
+.recipes__popup {
+  display: block;
+  width: 85%;
+  height: 75%;
+  padding: 4%;
+  position: fixed;
+  background-color: white;
+  backdrop-filter: blur(2px);
+  top: 12.5%;
+  left: 7.5%;
+  overflow-y: auto;
+}
+
+.recipes__popup_image {
+  height: 60%;
+  width: auto;
+}
+
 footer {
   display: flex;
   justify-content: flex-start;
