@@ -3,10 +3,8 @@ import MealAPI from './mealAPI';
 const recipeList = document.querySelector('.recipes__list');
 export default class UserInterface {
   static async displayRecipes() {
-    for (let i = 0; i < 9; i++) {
-      const randomRecipe = await MealAPI.getRandomRecipe();
-      UserInterface.createRecipeCard(randomRecipe);
-    }
+    const pasta = await MealAPI.getCategory('Pasta');
+    pasta.forEach((recipe) => this.createRecipeCard(recipe));
   }
 
   static createRecipeCard({ strMeal, strMealThumb }) {
