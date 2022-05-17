@@ -4,7 +4,7 @@ export default class PopUp {
     this.template(this.data.type);
   }
 
-  static template(type) {
+  static template() {
     const container = document.createElement('div');
     container.setAttribute('id', this.data.idMeal);
     container.setAttribute('class', 'recipes__popup');
@@ -61,4 +61,4 @@ export default class PopUp {
   }
 
   static submitComment() {}
-} 
+}

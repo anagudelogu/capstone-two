@@ -27,7 +27,9 @@ export default class UserInterface {
     }
   }
 
-  static createCard({ strMeal = '', strMealThumb = '', idMeal, likes = 1}) {
+  static createCard({
+    strMeal = '', strMealThumb = '', idMeal, likes = 1,
+  }) {
     const LI = document.createElement('li');
     LI.classList.add('recipes__card');
     LI.innerHTML = `
@@ -37,7 +39,7 @@ export default class UserInterface {
               <h2 class="recipes__title">${strMeal}</h2>
               <i class="fa-regular fa-heart"></i>
           </div>
-          <span class="recipes__likes">${likes} like${likes === 1 ? '': 's'}</span>
+          <span class="recipes__likes">${likes} like${likes === 1 ? '' : 's'}</span>
           <button class="recipes__comments">Comments</button>
           <button class="recipes__reservations">Reservations</button>
       </div>
@@ -46,16 +48,20 @@ export default class UserInterface {
     const openComments = LI.querySelector('.recipes__comments');
     openComments.addEventListener('click', () => {
       const comments = [
-        {username: 'Daniel', comment: 'I like this one.', 'creation_date': 'May 5th'},
-        {username: 'Andrés', comment: '5/10', 'creation_date': 'Feb 19th'},
-        {username: 'Joseph', comment: 'AMAZING DISH!!', 'creation_date': 'Dec 1st'}
+        { username: 'Daniel', comment: 'I like this one.', creation_date: 'May 5th' },
+        { username: 'Andrés', comment: '5/10', creation_date: 'Feb 19th' },
+        { username: 'Joseph', comment: 'AMAZING DISH!!', creation_date: 'Dec 1st' },
       ];
-      PopUp.pop({strMeal, strMealThumb, idMeal, comments, type: 'Recipe'})
+      PopUp.pop({
+        strMeal, strMealThumb, idMeal, comments, type: 'Recipe',
+      });
     });
 
     const openReservations = LI.querySelector('.recipes__reservations');
     openReservations.addEventListener('click', () => {
-      PopUp.pop({strMeal, strMealThumb, idMeal, type: 'Reservation'})
+      PopUp.pop({
+        strMeal, strMealThumb, idMeal, type: 'Reservation',
+      });
     });
 
     recipeList.appendChild(LI);
