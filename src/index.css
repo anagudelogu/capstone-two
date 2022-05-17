@@ -55,9 +55,8 @@ a:active {
 }
 
 .recipes{
-  margin-top: 80px;
+  margin: 80px auto;
   width: 90%;
-  margin-inline: auto;
 }
 
 .recipes__list{
@@ -70,6 +69,7 @@ a:active {
 
 .recipes__card{
   display: flex;
+  margin: 1.5%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -157,7 +157,6 @@ footer {
   }
 
   .recipes__card{
-    margin: 1.5%;
     width: 30%;
     display: flex;
     flex-direction: column;
