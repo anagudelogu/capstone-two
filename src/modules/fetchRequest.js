@@ -25,7 +25,7 @@ export default class FetchRequest {
       const options = {
         method: this.method,
         body: JSON.stringify(this.body),
-        headers: this.headers,
+        headers: this.method === 'POST' ? this.headers : undefined,
       };
 
       const response = await fetch(this.url, options);
