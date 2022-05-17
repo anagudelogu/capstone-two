@@ -1,4 +1,4 @@
-import MealAPI from './mealAPI';
+import MealAPI from './mealAPI.js';
 
 const recipeList = document.querySelector('.recipes__list');
 export default class UserInterface {

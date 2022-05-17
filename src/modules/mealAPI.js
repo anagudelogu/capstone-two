@@ -1,4 +1,4 @@
-import FetchRequest from './fetchRequest';
+import FetchRequest from './fetchRequest.js';
 
 const urlMap = {
   random: 'https://www.themealdb.com/api/json/v1/1/random.php',

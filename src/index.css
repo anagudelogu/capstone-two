@@ -54,12 +54,12 @@ a:active {
   display: none;
 }
 
-.recipes{
+.recipes {
   margin: 80px auto;
   width: 90%;
 }
 
-.recipes__list{
+.recipes__list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -67,49 +67,48 @@ a:active {
   list-style: none;
 }
 
-.recipes__card{
+.recipes__card {
   display: flex;
   margin: 1.5%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.recipes__image{
+.recipes__image {
   width: 100%;
 }
 
-.recipes__content{
+.recipes__content {
   width: 100%;
   padding-inline: 20px;
 }
 
-.recipes__header{
+.recipes__header {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.recipes__title{
+.recipes__title {
   font-size: 1.3rem;
 }
 
-.recipes__likes{
+.recipes__likes {
   display: block;
   margin-top: -10px;
   margin-bottom: 20px;
 }
 
-.recipes__comments, .recipes__reservations{
+.recipes__comments,
+.recipes__reservations {
   display: block;
   width: 70%;
   margin: 10px auto;
   padding: 5px 10px;
 }
-
-
 
 footer {
   display: flex;
@@ -145,53 +144,54 @@ footer {
     font-size: 14px;
   }
 
-  .recipes{
+  .recipes {
     margin-top: 100px;
     justify-content: flex-start;
     margin-bottom: 100px;
   }
 
-  .recipes__list{
+  .recipes__list {
     justify-content: flex-start;
     margin: 0 auto;
   }
 
-  .recipes__card{
+  .recipes__card {
     width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
-  
-  .recipes__image{
+
+  .recipes__image {
     width: 100%;
   }
-  
-  .recipes__content{
+
+  .recipes__content {
     width: 100%;
     padding-inline: 20px;
   }
-  
-  .recipes__header{
+
+  .recipes__header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
-  .recipes__title{
+
+  .recipes__title {
     font-size: 1.3rem;
   }
-  
-  .recipes__likes{
+
+  .recipes__likes {
     display: block;
     margin-top: -10px;
     margin-bottom: 20px;
   }
-  
-  .recipes__comments, .recipes__reservations{
+
+  .recipes__comments,
+  .recipes__reservations {
     display: block;
     width: 70%;
     margin: 10px auto;

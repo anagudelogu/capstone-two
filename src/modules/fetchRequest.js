@@ -1,9 +1,15 @@
 export default class FetchRequest {
   method;
+
   body;
+
   headers;
+
   url;
-  constructor({ method = 'GET', body, url = '', headers } = {}) {
+
+  constructor({
+    method = 'GET', body, url = '', headers,
+  } = {}) {
     this.method = method;
     this.body = body;
     this.headers = headers;
