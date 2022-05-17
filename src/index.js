@@ -2,6 +2,7 @@ import './index.css';
 import UserInterface from './modules/userInterface.js';
 import MealAPI from './modules/mealAPI.js';
 import CurrentCategory from './modules/currentCategory.js';
+import InvolvementAPI from './modules/involvementAPI.js';
 
 const asyncEnv = async () => {
   const pasta = await MealAPI.getByCategory('Pasta');
@@ -10,3 +11,14 @@ const asyncEnv = async () => {
 };
 
 asyncEnv();
+
+const LIST = document.querySelector('.recipes__list');
+
+LIST.addEventListener('click', async (e) => {
+  const clickedElement = e.target;
+
+  if (clickedElement.classList.contains('fa-heart')) {
+    const mealName = clickedElement.parentNode.children[0].innerText;
+    await InvolvementAPI.addLike(mealName);
+  }
+});

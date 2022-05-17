@@ -8,7 +8,12 @@ export default class FetchRequest {
   url;
 
   constructor({
-    method = 'GET', body, url = '', headers,
+    method = 'GET',
+    body,
+    url = '',
+    headers = {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
   } = {}) {
     this.method = method;
     this.body = body;
@@ -21,10 +26,11 @@ export default class FetchRequest {
       const options = {
         method: this.method,
         body: JSON.stringify(this.body),
-        headers: this.headers,
+        headers: this.method === 'POST' ? this.headers : undefined,
       };
 
       const response = await fetch(this.url, options);
+      if (response.status === 201) return null;
       const data = await response.json();
       return data;
     } catch (error) {
