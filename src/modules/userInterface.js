@@ -4,28 +4,11 @@ import PopUp from './popUp.js';
 const recipeList = document.querySelector('.recipes__list');
 
 export default class UserInterface {
-  constructor() {
-    this.recipes = {};
-    this.categories = {};
+  static displayRecipes(mealsArr) {
+    mealsArr.forEach((recipe) => this.createCard(recipe));
   }
 
-  static async displayRecipes(category = 'Pasta') {
-    try {
-      const pasta = await MealAPI.getByCategory(category);
-      pasta.forEach((recipe) => this.createCard(recipe));
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
-
-  static async displayCategories() {
-    try {
-      const pasta = await MealAPI.getCategories();
-      pasta.forEach((category) => this.createCard(category));
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
+  static displayCategories() {}
 
   static createCard({
     strMeal = '', strMealThumb = '', idMeal, likes = 1,
