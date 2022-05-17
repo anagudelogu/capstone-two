@@ -48,9 +48,9 @@ export default class UserInterface {
     const openComments = LI.querySelector('.recipes__comments');
     openComments.addEventListener('click', () => {
       const comments = [
-        { username: 'Daniel', comment: 'I like this one.', creation_date: 'May 5th' },
-        { username: 'Andrés', comment: '5/10', creation_date: 'Feb 19th' },
-        { username: 'Joseph', comment: 'AMAZING DISH!!', creation_date: 'Dec 1st' },
+        { username: 'Daniel', comment: 'I like this one.', creation_date: '06/08/2022' },
+        { username: 'Andrés', comment: '5/10', creation_date: '19/02/2021' },
+        { username: 'Joseph', comment: 'AMAZING DISH!!', creation_date: '24/12/2020' },
       ];
       PopUp.pop({
         strMeal, strMealThumb, idMeal, comments, type: 'Recipe',

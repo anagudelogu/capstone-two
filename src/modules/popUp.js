@@ -32,14 +32,14 @@ export default class PopUp {
     this.data.comments.forEach((comment) => {
       comments += `
         <li class="recipes__popup_comment">
+          <span class="recipes__popup_comment-date">
+            ${comment.creation_date}
+          </span>
           <span class="recipes__popup_comment-user">
             ${comment.username}:
           </span>
           <span class="recipes__popup_comment-content">
             ${comment.comment}
-          </span>-
-          <span class="recipes__popup_comment-date">
-            ${comment.creation_date}
           </span>
         </li>
       `;
