@@ -99,6 +99,8 @@ export default class PopUp {
 
   static commentCountAdd(container) {
     this.commentCount += 1;
-    container.querySelector('.recipes__popup_comment-count').innerHTML = `Comments (${this.data.comments.length + this.commentCount})`;
+    const commentsNum = this.data.comments.length + this.commentCount;
+    container.querySelector('.recipes__popup_comment-count').innerHTML = `Comments (${commentsNum})`;
+    return commentsNum;
   }
 }
