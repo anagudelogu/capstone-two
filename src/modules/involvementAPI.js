@@ -24,18 +24,23 @@ export default class InvolvementAPI {
     }
   }
 
-  static async getLikes(meal) {
+  static async getAllLikes() {
     try {
       const fetchRequest = new FetchRequest({
         url: `${urlMAP.main}${urlMAP.likes}`,
       });
-      const allLikes = await fetchRequest.call();
-      const mealLikes = allLikes.filter((x) => x.item_id === meal)[0];
-      if (!mealLikes) return 0;
-      return mealLikes.likes;
+      return await fetchRequest.call();
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  static getMealLikes(likesArr, ItemId) {
+    const mealLikes = likesArr.filter(
+      (meal) => meal.item_id === ItemId
+    )[0];
+    if (!mealLikes) return 0;
+    return mealLikes.likes;
   }
 
   static async addComment({ username, comment }, meal) {
