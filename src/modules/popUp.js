@@ -23,6 +23,7 @@ export default class PopUp {
       ${commentSection}
       ${reservationSection}
     `;
+
     container.querySelector('i').addEventListener('click', () => {
       container.remove();
     });
@@ -30,26 +31,18 @@ export default class PopUp {
     if (this.data.type === 'Recipe') {
       const [user, comment] = container.querySelectorAll('input');
       const submit = container.querySelector('button');
+      const ulContainer = container.querySelector('ul');
 
       submit.addEventListener('click', async () => {
         if (user.value === '' || comment.value === '') return;
         const inputComment = { username: user.value, comment: comment.value };
-        const [day, month, year] = new Date().toLocaleDateString().split('/');
-        const li = document.createElement('li');
-        li.innerHTML = PopUp.displayComment(
-          {
-            ...inputComment,
-            creation_date:
-              `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`,
-          },
-        );
+        PopUp.createCommentOnDOM(user, comment, ulContainer, inputComment);
         await InvolvementAPI.addComment(inputComment, this.data.idMeal);
-        container.querySelector('ul').appendChild(li);
-        this.commentCount += 1;
-        container.querySelector('.recipes__popup_comment-count').innerHTML = `Comments (${this.data.comments.length + this.commentCount})`;
+        PopUp.commentCountAdd(container);
         [user.value, comment.value] = ['', ''];
       });
     }
+
     document.body.appendChild(container);
   }
 
@@ -92,5 +85,20 @@ export default class PopUp {
     return '';
   }
 
-  static submitComment() {}
+  static createCommentOnDOM(user, comment, container, inputComment) {
+    const [day, month, year] = new Date().toLocaleDateString().split('/');
+    const li = PopUp.displayComment(
+      {
+        ...inputComment,
+        creation_date:
+          `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`,
+      },
+    );
+    container.innerHTML += li;
+  }
+
+  static commentCountAdd(container) {
+    this.commentCount += 1;
+    container.querySelector('.recipes__popup_comment-count').innerHTML = `Comments (${this.data.comments.length + this.commentCount})`;
+  }
 }
