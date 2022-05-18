@@ -5,10 +5,11 @@ import CurrentCategory from './modules/currentCategory.js';
 import InvolvementAPI from './modules/involvementAPI.js';
 
 const asyncEnv = async () => {
-  const pasta = await MealAPI.getByCategory('Chicken');
+  const pasta = await MealAPI.getByCategory('Seafood');
   const allLikes = await InvolvementAPI.getAllLikes();
   const currentCategory = new CurrentCategory(pasta);
   UserInterface.displayRecipes(currentCategory.meals, allLikes);
+  UserInterface.counterText('Recipes');
 };
 
 asyncEnv();

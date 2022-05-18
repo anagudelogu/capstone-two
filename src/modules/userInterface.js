@@ -4,7 +4,7 @@ import PopUp from './popUp.js';
 const recipeList = document.querySelector('.recipes__list');
 
 export default class UserInterface {
-  static displayRecipes(mealsArr, likes) {
+  static displayRecipes(mealsArr, likes = []) {
     mealsArr.forEach((recipe) => {
       const mealLikes = InvolvementAPI.getMealLikes(
         likes,
@@ -80,5 +80,15 @@ export default class UserInterface {
     nLikes.innerHTML = `<span>${newLikes}</span> like${
       newLikes === 1 ? '' : 's'
     }`;
+  }
+
+  static itemCount() {
+    const itemList = document.querySelector('.recipes__list');
+    return itemList.children.length;
+  }
+
+  static counterText(type) {
+    const text = document.querySelector('.navbar__recipes');
+    text.innerHTML = `${type} (${this.itemCount()})`;
   }
 }
