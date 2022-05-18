@@ -1,3 +1,4 @@
+// n4Krnxa1GxXHbZ349UMm clean
 // jtXFPXNizRtU5pfZ26sT
 // test: MBxSJyVQ8zQzuxBkwa5m
 
@@ -31,7 +32,6 @@ export default class InvolvementAPI {
         url: `${urlMAP.main}${urlMAP.likes}`,
       });
       const allLikes = await fetchRequest.call();
-      console.log(allLikes);
       return allLikes;
     } catch (error) {
       throw new Error(error);
@@ -40,7 +40,7 @@ export default class InvolvementAPI {
 
   static getMealLikes(likesArr, ItemId) {
     const mealLikes = likesArr.filter(
-      (meal) => meal.item_id === ItemId
+      (meal) => meal.item_id === ItemId,
     )[0];
     if (!mealLikes) return 0;
     return mealLikes.likes;
