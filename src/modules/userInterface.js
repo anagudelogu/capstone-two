@@ -1,3 +1,4 @@
+import InvolvementAPI from './involvementAPI.js';
 import PopUp from './popUp.js';
 
 const recipeList = document.querySelector('.recipes__list');
@@ -10,10 +11,11 @@ export default class UserInterface {
   static displayCategories() {}
 
   static createCard({
-    strMeal = '', strMealThumb = '', idMeal, likes = 1,
+    strMeal = '', strMealThumb = '', idMeal, likes = 0,
   }) {
     const LI = document.createElement('li');
     LI.classList.add('recipes__card');
+    LI.setAttribute('id', idMeal);
     LI.innerHTML = `
       <img class="recipes__image" src="${strMealThumb}" alt="Delicious ${strMeal}">
       <div class="recipes__content">
@@ -28,12 +30,13 @@ export default class UserInterface {
     `;
 
     const openComments = LI.querySelector('.recipes__comments');
-    openComments.addEventListener('click', () => {
-      const comments = [
-        { username: 'Daniel', comment: 'I like this one.', creation_date: '06/08/2022' },
-        { username: 'Andrés', comment: '5/10', creation_date: '19/02/2021' },
-        { username: 'Joseph', comment: 'AMAZING DISH!!', creation_date: '24/12/2020' },
-      ];
+    openComments.addEventListener('click', async () => {
+      await InvolvementAPI.addComment(
+        { username: '', comment: '' },
+        idMeal,
+      );
+      let comments = await InvolvementAPI.getComments(idMeal);
+      comments = comments.filter((comment) => comment.username !== '');
       PopUp.pop({
         strMeal, strMealThumb, idMeal, comments, type: 'Recipe',
       });
