@@ -1,15 +1,15 @@
-import PopUp from "../modules/popUp";
+import PopUp from '../modules/popUp.js';
 
 const createEnv = (comments = []) => {
   PopUp.pop({
-    strMeal: 'meal', strMealThumb: 'thumb', idMeal: 0, comments: comments, type: 'Recipe',
+    strMeal: 'meal', strMealThumb: 'thumb', idMeal: 0, comments, type: 'Recipe',
   });
   const container = document.createElement('div');
   const el = document.createElement('span');
   el.classList.add('recipes__popup_comment-count');
   container.appendChild(el);
   return [container];
-}
+};
 
 describe('Counting number of comments', () => {
   it('Count 0 comments', () => {
@@ -32,7 +32,6 @@ describe('Counting number of comments', () => {
     for (let i = 0; i < n; i += 1) {
       num = PopUp.commentCountAdd(container2);
     }
-    
 
     expect(num).toEqual(n);
   });
