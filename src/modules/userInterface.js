@@ -4,15 +4,22 @@ import PopUp from './popUp.js';
 const recipeList = document.querySelector('.recipes__list');
 
 export default class UserInterface {
-  static displayRecipes(mealsArr) {
-    mealsArr.forEach((recipe) => this.createCard(recipe));
+  static displayRecipes(mealsArr, likes) {
+    mealsArr.forEach((recipe) => {
+      const mealLikes = InvolvementAPI.getMealLikes(
+        likes,
+        recipe.idMeal,
+      );
+      this.createCard(recipe, mealLikes);
+    });
   }
 
   static displayCategories() {}
 
-  static createCard({
-    strMeal = '', strMealThumb = '', idMeal, likes = 0,
-  }) {
+  static createCard(
+    { strMeal = '', strMealThumb = '', idMeal },
+    likes = 0,
+  ) {
     const LI = document.createElement('li');
     LI.classList.add('recipes__card');
     LI.setAttribute('id', idMeal);
@@ -23,7 +30,9 @@ export default class UserInterface {
               <h2 class="recipes__title">${strMeal}</h2>
               <i class="fa-regular fa-heart"></i>
           </div>
-          <span class="recipes__likes">${likes} like${likes === 1 ? '' : 's'}</span>
+          <span class="recipes__likes"><span>${likes}</span> like${
+  likes === 1 ? '' : 's'
+}</span>
           <button class="recipes__comments">Comments</button>
           <button class="recipes__reservations">Reservations</button>
       </div>
@@ -36,19 +45,40 @@ export default class UserInterface {
         idMeal,
       );
       let comments = await InvolvementAPI.getComments(idMeal);
-      comments = comments.filter((comment) => comment.username !== '');
+      comments = comments.filter(
+        (comment) => comment.username !== '',
+      );
       PopUp.pop({
-        strMeal, strMealThumb, idMeal, comments, type: 'Recipe',
+        strMeal,
+        strMealThumb,
+        idMeal,
+        comments,
+        type: 'Recipe',
       });
     });
 
-    const openReservations = LI.querySelector('.recipes__reservations');
+    const openReservations = LI.querySelector(
+      '.recipes__reservations',
+    );
     openReservations.addEventListener('click', () => {
       PopUp.pop({
-        strMeal, strMealThumb, idMeal, type: 'Reservation',
+        strMeal,
+        strMealThumb,
+        idMeal,
+        type: 'Reservation',
       });
     });
 
     recipeList.appendChild(LI);
+  }
+
+  static addToLikesCounterDOM(element) {
+    const nLikes = element.querySelector('.recipes__likes');
+    const oldLikes = +nLikes.children[0].innerText;
+    const newLikes = oldLikes + 1;
+
+    nLikes.innerHTML = `<span>${newLikes}</span> like${
+      newLikes === 1 ? '' : 's'
+    }`;
   }
 }

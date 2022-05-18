@@ -5,9 +5,10 @@ import CurrentCategory from './modules/currentCategory.js';
 import InvolvementAPI from './modules/involvementAPI.js';
 
 const asyncEnv = async () => {
-  const pasta = await MealAPI.getByCategory('Seafood');
+  const pasta = await MealAPI.getByCategory('Chicken');
+  const allLikes = await InvolvementAPI.getAllLikes();
   const currentCategory = new CurrentCategory(pasta);
-  UserInterface.displayRecipes(currentCategory.meals);
+  UserInterface.displayRecipes(currentCategory.meals, allLikes);
 };
 
 asyncEnv();
@@ -18,15 +19,17 @@ LIST.addEventListener('click', async (e) => {
   const clickedElement = e.target;
 
   if (clickedElement.classList.contains('fa-heart')) {
-    const mealName = clickedElement.parentNode.getAttribute('id');
-    await InvolvementAPI.addLike(mealName);
+    const card = clickedElement.parentNode.parentNode.parentNode;
+    const mealId = card.getAttribute('id');
+    await InvolvementAPI.addLike(mealId);
+    UserInterface.addToLikesCounterDOM(card);
   }
 
   if (clickedElement.classList.contains('recipes__comments')) {
-    const mealName = clickedElement.parentNode.getAttribute('id');
+    const mealId = clickedElement.parentNode.getAttribute('id');
     await InvolvementAPI.addComment(
       { username: '', comment: '' },
-      mealName,
+      mealId,
     );
   }
 });
