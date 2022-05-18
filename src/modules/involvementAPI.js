@@ -1,6 +1,5 @@
 // MBxSJyVQ8zQzuxBkwa5m
 // IlF5vbTwnxZ2cdpiiJ2c
-// 1OLlwvrPFTOZoc7KZ6ji
 import FetchRequest from './fetchRequest.js';
 
 const appId = 'IlF5vbTwnxZ2cdpiiJ2c';
@@ -34,6 +33,35 @@ export default class InvolvementAPI {
       const mealLikes = allLikes.filter((x) => x.item_id === meal)[0];
       if (!mealLikes) return 0;
       return mealLikes.likes;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  static async addComment({ username, comment }, meal) {
+    try {
+      const fetchRequest = new FetchRequest({
+        method: 'POST',
+        body: {
+          item_id: meal,
+          username,
+          comment,
+        },
+        url: `${urlMAP.main}${urlMAP.comments}`,
+      });
+      await fetchRequest.call();
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  static async getComments(meal) {
+    try {
+      const fetchRequest = new FetchRequest({
+        url: `${urlMAP.main}${urlMAP.byComment}${meal}`,
+      });
+      const comments = await fetchRequest.call();
+      return comments;
     } catch (error) {
       throw new Error(error);
     }
