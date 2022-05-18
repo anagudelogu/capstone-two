@@ -18,12 +18,12 @@ LIST.addEventListener('click', async (e) => {
   const clickedElement = e.target;
 
   if (clickedElement.classList.contains('fa-heart')) {
-    const mealName = clickedElement.parentNode.children[0].innerText;
+    const mealName = clickedElement.parentNode.getAttribute('id');
     await InvolvementAPI.addLike(mealName);
   }
 
   if (clickedElement.classList.contains('recipes__comments')) {
-    const mealName = clickedElement.parentNode.children[0].innerText;
+    const mealName = clickedElement.parentNode.getAttribute('id');
     await InvolvementAPI.addComment(
       { username: '', comment: '' },
       mealName,

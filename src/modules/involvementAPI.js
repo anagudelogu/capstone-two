@@ -2,7 +2,7 @@
 // IlF5vbTwnxZ2cdpiiJ2c
 import FetchRequest from './fetchRequest.js';
 
-const appId = 'IlF5vbTwnxZ2cdpiiJ2c';
+const appId = 'MBxSJyVQ8zQzuxBkwa5m';
 const urlMAP = {
   main: 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/',
   likes: `${appId}/likes/`,
@@ -63,6 +63,7 @@ export default class InvolvementAPI {
       const comments = await fetchRequest.call();
       return comments;
     } catch (error) {
+      console.log('sos nub');
       throw new Error(error);
     }
   }

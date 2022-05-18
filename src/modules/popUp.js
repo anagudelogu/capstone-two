@@ -1,6 +1,9 @@
+import InvolvementAPI from "./involvementAPI";
+
 export default class PopUp {
   static pop(data) {
     this.data = data;
+    this.commentCount = 0;
     this.template(this.data.type);
   }
 
@@ -23,30 +26,60 @@ export default class PopUp {
     container.querySelector('i').addEventListener('click', () => {
       container.remove();
     });
+
+    if (this.data.type === 'Recipe') {
+      const [user, comment] = container.querySelectorAll('input');
+      const submit = container.querySelector('button');
+
+      submit.addEventListener('click', async () => {
+        if (user.value === '' || comment.value === '') return;
+        const inputComment = {username: user.value, comment: comment.value};
+        const creationDate = new Date();
+        const li = document.createElement('li');
+        li.innerHTML = PopUp.displayComment(
+          {
+            ...inputComment,
+            'creation_date': 
+              `${creationDate.getDate()}-${creationDate.getMonth()}-${creationDate.getFullYear()}`
+          }
+        );
+        await InvolvementAPI.addComment(inputComment, this.data.idMeal);
+        container.querySelector('ul').appendChild(li);
+        this.commentCount += 1;
+        container.querySelector('.recipes__popup_comment-count').innerHTML = 
+          `Comments (${this.data.comments.length + this.commentCount})`;
+        user.value = '', comment.value = '';
+      });
+    }
     document.body.appendChild(container);
+  }
+
+  static displayComment(data) {
+    const [year, month, day] = data.creation_date.split('-');
+    return `
+        <li class="recipes__popup_comment">
+          <span class="recipes__popup_comment-date">
+            ${day}-${month}-${year}
+          </span>
+          <span class="recipes__popup_comment-user">
+            ${data.username}:
+          </span>
+          <span class="recipes__popup_comment-content">
+            ${data.comment}
+          </span>
+        </li>
+      `;
   }
 
   static commentsTemplate(type) {
     if (type !== 'Recipe') return '';
     let comments = '';
     this.data.comments.forEach((comment) => {
-      comments += `
-        <li class="recipes__popup_comment">
-          <span class="recipes__popup_comment-date">
-            ${comment.creation_date}
-          </span>
-          <span class="recipes__popup_comment-user">
-            ${comment.username}:
-          </span>
-          <span class="recipes__popup_comment-content">
-            ${comment.comment}
-          </span>
-        </li>
-      `;
+      comments += PopUp.displayComment(comment);
     });
     return `
-      <div>
-        <span>Comments (${this.data.comments.length})</span>
+      <div class="recipes__popup_comments">
+        <span class="recipes__popup_comment-count">Comments (${this.data.comments.length})</span>
         <ul class="recipes__popup_comments">${comments}</ul>
         <input class="recipes__popup_input-user" placeholder="User" tabindex=0></input>
         <input  class="recipes__popup_input-comment" placeholder="Comment" tabindex=0></input>
