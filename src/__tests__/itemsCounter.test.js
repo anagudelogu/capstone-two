@@ -8,7 +8,7 @@ describe('Counting number of items', () => {
                   </ul>
               </div>`;
   });
-  it('Gets the count of the items present in the DOM', () => {
+  it('Returns 0 if there are no items present in the List', () => {
     expect(UserInterface.itemCount()).toBe(0);
   });
 
