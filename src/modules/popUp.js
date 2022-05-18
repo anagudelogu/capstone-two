@@ -1,4 +1,4 @@
-import InvolvementAPI from "./involvementAPI";
+import InvolvementAPI from './involvementAPI.js';
 
 export default class PopUp {
   static pop(data) {
@@ -33,22 +33,21 @@ export default class PopUp {
 
       submit.addEventListener('click', async () => {
         if (user.value === '' || comment.value === '') return;
-        const inputComment = {username: user.value, comment: comment.value};
-        const creationDate = new Date();
+        const inputComment = { username: user.value, comment: comment.value };
+        const [day, month, year] = new Date().toLocaleDateString().split('/');
         const li = document.createElement('li');
         li.innerHTML = PopUp.displayComment(
           {
             ...inputComment,
-            'creation_date': 
-              `${creationDate.getDate()}-${creationDate.getMonth()}-${creationDate.getFullYear()}`
-          }
+            creation_date:
+              `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`,
+          },
         );
         await InvolvementAPI.addComment(inputComment, this.data.idMeal);
         container.querySelector('ul').appendChild(li);
         this.commentCount += 1;
-        container.querySelector('.recipes__popup_comment-count').innerHTML = 
-          `Comments (${this.data.comments.length + this.commentCount})`;
-        user.value = '', comment.value = '';
+        container.querySelector('.recipes__popup_comment-count').innerHTML = `Comments (${this.data.comments.length + this.commentCount})`;
+        [user.value, comment.value] = ['', ''];
       });
     }
     document.body.appendChild(container);

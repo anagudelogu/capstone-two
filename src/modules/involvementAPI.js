@@ -63,7 +63,6 @@ export default class InvolvementAPI {
       const comments = await fetchRequest.call();
       return comments;
     } catch (error) {
-      console.log('sos nub');
       throw new Error(error);
     }
   }

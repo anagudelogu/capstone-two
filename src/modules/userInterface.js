@@ -1,4 +1,3 @@
-import FetchRequest from './fetchRequest.js';
 import InvolvementAPI from './involvementAPI.js';
 import PopUp from './popUp.js';
 
@@ -12,7 +11,7 @@ export default class UserInterface {
   static displayCategories() {}
 
   static createCard({
-    strMeal = '', strMealThumb = '', idMeal, likes = 1,
+    strMeal = '', strMealThumb = '', idMeal, likes = 0,
   }) {
     const LI = document.createElement('li');
     LI.classList.add('recipes__card');
