@@ -37,7 +37,7 @@ export default class InvolvementAPI {
 
   static getMealLikes(likesArr, ItemId) {
     const mealLikes = likesArr.filter(
-      (meal) => meal.item_id === ItemId
+      (meal) => meal.item_id === ItemId,
     )[0];
     if (!mealLikes) return 0;
     return mealLikes.likes;

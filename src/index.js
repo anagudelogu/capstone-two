@@ -29,7 +29,7 @@ LIST.addEventListener('click', async (e) => {
     const mealId = clickedElement.parentNode.getAttribute('id');
     await InvolvementAPI.addComment(
       { username: '', comment: '' },
-      mealId
+      mealId,
     );
   }
 });
