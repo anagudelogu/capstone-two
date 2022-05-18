@@ -8,7 +8,7 @@ export default class UserInterface {
     mealsArr.forEach((recipe) => {
       const mealLikes = InvolvementAPI.getMealLikes(
         likes,
-        recipe.idMeal
+        recipe.idMeal,
       );
       this.createCard(recipe, mealLikes);
     });
@@ -18,7 +18,7 @@ export default class UserInterface {
 
   static createCard(
     { strMeal = '', strMealThumb = '', idMeal },
-    likes = 0
+    likes = 0,
   ) {
     const LI = document.createElement('li');
     LI.classList.add('recipes__card');
@@ -31,8 +31,8 @@ export default class UserInterface {
               <i class="fa-regular fa-heart"></i>
           </div>
           <span class="recipes__likes"><span>${likes}</span> like${
-      likes === 1 ? '' : 's'
-    }</span>
+  likes === 1 ? '' : 's'
+}</span>
           <button class="recipes__comments">Comments</button>
           <button class="recipes__reservations">Reservations</button>
       </div>
@@ -42,11 +42,11 @@ export default class UserInterface {
     openComments.addEventListener('click', async () => {
       await InvolvementAPI.addComment(
         { username: '', comment: '' },
-        idMeal
+        idMeal,
       );
       let comments = await InvolvementAPI.getComments(idMeal);
       comments = comments.filter(
-        (comment) => comment.username !== ''
+        (comment) => comment.username !== '',
       );
       PopUp.pop({
         strMeal,
@@ -58,7 +58,7 @@ export default class UserInterface {
     });
 
     const openReservations = LI.querySelector(
-      '.recipes__reservations'
+      '.recipes__reservations',
     );
     openReservations.addEventListener('click', () => {
       PopUp.pop({
