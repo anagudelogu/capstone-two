@@ -1,8 +1,9 @@
-// MBxSJyVQ8zQzuxBkwa5m
-// IlF5vbTwnxZ2cdpiiJ2c
+// jtXFPXNizRtU5pfZ26sT
+// test: MBxSJyVQ8zQzuxBkwa5m
+
 import FetchRequest from './fetchRequest.js';
 
-const appId = 'MBxSJyVQ8zQzuxBkwa5m';
+const appId = 'jtXFPXNizRtU5pfZ26sT';
 const urlMAP = {
   main: 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/',
   likes: `${appId}/likes/`,
@@ -29,7 +30,9 @@ export default class InvolvementAPI {
       const fetchRequest = new FetchRequest({
         url: `${urlMAP.main}${urlMAP.likes}`,
       });
-      return await fetchRequest.call();
+      const allLikes = await fetchRequest.call();
+      console.log(allLikes);
+      return allLikes;
     } catch (error) {
       throw new Error(error);
     }
@@ -37,7 +40,7 @@ export default class InvolvementAPI {
 
   static getMealLikes(likesArr, ItemId) {
     const mealLikes = likesArr.filter(
-      (meal) => meal.item_id === ItemId,
+      (meal) => meal.item_id === ItemId
     )[0];
     if (!mealLikes) return 0;
     return mealLikes.likes;
