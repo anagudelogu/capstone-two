@@ -37,7 +37,7 @@ li {
 
 .navbar {
   height: 50px;
-  padding: 10px;
+  padding: 10px 24px;
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -48,8 +48,18 @@ li {
   width: 100%;
 }
 
+span.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__logo {
+  width: 160px;
+}
+
 .navbar__logo .hero__logo {
-  width: 20px;
+  width: 32px;
 }
 
 .navbar__recipes {
@@ -69,6 +79,11 @@ li {
   height: calc(100vh - 80px);
   width: 70%;
   margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
 }
 
 .hero .category__list {
