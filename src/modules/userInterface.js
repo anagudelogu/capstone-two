@@ -73,12 +73,15 @@ export default class UserInterface {
   }
 
   static counterText(type) {
-    const text = document.querySelector('.landing__counter');
-    text.innerHTML = `${type} (${this.itemCount()})`;
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach((counter) => {
+      counter.innerHTML = `${type} (${this.itemCount(
+        counter.nextElementSibling,
+      )})`;
+    });
   }
 
-  static itemCount() {
-    const itemList = document.querySelector('.list');
-    return itemList.children.length;
+  static itemCount(element) {
+    return element.children.length;
   }
 }

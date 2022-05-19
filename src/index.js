@@ -21,8 +21,8 @@ Array.from(imageContainer).forEach((container) => {
 const asyncEnv = async () => {
   const categories = await MealAPI.getCategories();
   UserInterface.displayCategories(categories);
-  UserInterface.counterText('Categories');
   Menu.displayCategories(categories);
+  UserInterface.counterText('Categories');
 };
 
 asyncEnv();
