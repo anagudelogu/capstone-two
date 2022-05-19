@@ -1,13 +1,14 @@
 import InvolvementAPI from './involvementAPI.js';
 
 const recipeList = document.querySelector('.recipes__list');
+const categoryList = document.querySelector('.category__list');
 
 export default class UserInterface {
   static displayRecipes(mealsArr, likes = []) {
     mealsArr.forEach((recipe) => {
       const mealLikes = InvolvementAPI.getMealLikes(
         likes,
-        recipe.idMeal,
+        recipe.idMeal
       );
       this.createCard(recipe, mealLikes);
     });
@@ -25,23 +26,22 @@ export default class UserInterface {
     strCategoryThumb,
   }) {
     const LI = document.createElement('li');
-    LI.classList.add('recipes__card');
+    LI.classList.add('category__card');
     LI.setAttribute('id', idCategory);
     LI.innerHTML = `
-      <img class="recipes__image" src="${strCategoryThumb}" alt="Delicious ${strCategory}">
-      <div class="recipes__content">
-          <div class="recipes__header">
-              <h2 class="recipes__title">${strCategory}</h2>
+      <img class="category__image" src="${strCategoryThumb}" alt="Delicious ${strCategory}">
+      <div class="category__content">
+          <div class="category__header">
+              <h2 class="category__title">${strCategory}</h2>
           </div>
-          <button class="button categories__button">View recipes!</button>
       </div>
     `;
-    recipeList.appendChild(LI);
+    categoryList.appendChild(LI);
   }
 
   static createCard(
     { strMeal = '', strMealThumb = '', idMeal },
-    likes = 0,
+    likes = 0
   ) {
     const LI = document.createElement('li');
     LI.classList.add('recipes__card');
@@ -54,8 +54,8 @@ export default class UserInterface {
               <i class="fa-regular fa-heart"></i>
           </div>
           <span class="recipes__likes"><span>${likes}</span> like${
-  likes === 1 ? '' : 's'
-}</span>
+      likes === 1 ? '' : 's'
+    }</span>
           <button class="recipes__comments">Comments</button>
           <button class="recipes__reservations">Reservations</button>
       </div>
