@@ -11,6 +11,10 @@ html {
   font-family: 'Mukta', sans-serif;
 }
 
+body.noScroll{
+  overflow: hidden;
+}
+
 *,
 *::before,
 *::after {
@@ -69,6 +73,62 @@ span.image {
 
 .navbar__hamburger :nth-child(2) {
   display: none;
+}
+
+.menu{
+  position: fixed;
+  top: 50px;
+  left: 0;
+  background-color: var(--dark-green);
+  width: 100%;
+  height: calc(100vh - 80px);
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  overflow-y: auto;
+}
+
+
+.menu.active{
+  transform: translateX(0);
+}
+
+.menu__categories{
+  font-size: 1.4rem;
+  width: 100%;
+  height: 40px;
+  border-bottom: solid 1px black;
+  text-align: center;
+  margin: 0 auto 12px;
+}
+
+.menu__list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu__item{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding: 12px;
+  border-bottom: 1px solid black;
+}
+
+.menu__item img{
+  width: 50%;
+  max-width: 80px;
+}
+
+.menu__item span{
+  font-size: 1.2rem;
+  width: 50%;
+  text-align: left;
 }
 
 .landing {
