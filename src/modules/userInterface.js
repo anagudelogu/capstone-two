@@ -14,7 +14,31 @@ export default class UserInterface {
     });
   }
 
-  static displayCategories() {}
+  static displayCategories(categoriesArr) {
+    categoriesArr.forEach((category) => {
+      this.createCategoryCard(category);
+    });
+  }
+
+  static createCategoryCard({
+    idCategory,
+    strCategory,
+    strCategoryThumb,
+  }) {
+    const LI = document.createElement('li');
+    LI.classList.add('recipes__card');
+    LI.setAttribute('id', idCategory);
+    LI.innerHTML = `
+      <img class="recipes__image" src="${strCategoryThumb}" alt="Delicious ${strCategory}">
+      <div class="recipes__content">
+          <div class="recipes__header">
+              <h2 class="recipes__title">${strCategory}</h2>
+          </div>
+          <button class="button categories__button">View recipes!</button>
+      </div>
+    `;
+    recipeList.appendChild(LI);
+  }
 
   static createCard(
     { strMeal = '', strMealThumb = '', idMeal },
@@ -37,7 +61,6 @@ export default class UserInterface {
           <button class="recipes__reservations">Reservations</button>
       </div>
     `;
-
     const openComments = LI.querySelector('.recipes__comments');
     openComments.addEventListener('click', async () => {
       await InvolvementAPI.addComment(
