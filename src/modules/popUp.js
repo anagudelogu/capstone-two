@@ -14,12 +14,13 @@ export default class PopUp {
 
     const commentSection = PopUp.commentsTemplate(this.data.type);
     const reservationSection = PopUp.reservationsTemplate(this.data.type);
+    const instructs = PopUp.instructionsTemplate(this.data.strInstructions);
 
     container.innerHTML = `
       <img class="recipes__popup_image" src="${this.data.strMealThumb}" alt="Delicious ${this.data.strMeal}">
       <i class="fa-solid fa-xmark"></i>
       <h2 class="recipes__popup_title">${this.data.strMeal}</h2>
-      <p class="recipes__popup_instructs">${this.data.strInstructions}</p>
+      <ul class="recipes__popup_instructs">${instructs}</ul>
       ${commentSection}
       ${reservationSection}
     `;
@@ -102,5 +103,13 @@ export default class PopUp {
     const commentsNum = this.data.comments.length + this.commentCount;
     container.querySelector('.recipes__popup_comment-count').innerHTML = `Comments (${commentsNum})`;
     return commentsNum;
+  }
+
+  static instructionsTemplate(instructs) {
+    let newInstructs = '';
+    instructs.split(/\r?\n/).forEach((line) => {
+      newInstructs += `<li class="popup__instructs_line">${line}</li>`
+    });
+    return newInstructs;
   }
 }
