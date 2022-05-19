@@ -61,19 +61,17 @@ li {
   display: none;
 }
 
-.landing{
+.landing {
   margin: 80px auto;
 }
 
-.hero{
+.hero {
   height: calc(100vh - 80px);
   width: 70%;
   margin-inline: auto;
 }
 
-.hero
-
-.category__list {
+.hero .category__list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
