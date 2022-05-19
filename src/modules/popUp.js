@@ -18,8 +18,8 @@ export default class PopUp {
     container.innerHTML = `
       <img class="recipes__popup_image" src="${this.data.strMealThumb}" alt="Delicious ${this.data.strMeal}">
       <i class="fa-solid fa-xmark"></i>
-      <h2>${this.data.strMeal}</h2>
-      
+      <h2 class="recipes__popup_title">${this.data.strMeal}</h2>
+      <p class="recipes__popup_instructs">${this.data.strInstructions}</p>
       ${commentSection}
       ${reservationSection}
     `;
