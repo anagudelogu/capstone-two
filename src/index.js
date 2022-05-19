@@ -6,6 +6,7 @@ import CurrentCategory from './modules/currentCategory.js';
 import CurrentMeal from './modules/currentMeal.js';
 import InvolvementAPI from './modules/involvementAPI.js';
 import PopUp from './modules/popUp.js';
+import Menu from './modules/menu';
 
 const imageContainer = document.querySelectorAll('.image');
 
@@ -21,6 +22,7 @@ const asyncEnv = async () => {
   const categories = await MealAPI.getCategories();
   UserInterface.displayCategories(categories);
   UserInterface.counterText('Categories');
+  Menu.displayCategories(categories);
 };
 
 asyncEnv();
@@ -31,7 +33,8 @@ document.addEventListener('click', async (e) => {
   const clickedElement = e.target;
 
   if (clickedElement.classList.contains('category__image')) {
-    const categoryName = clickedElement.parentNode.children[1].innerText;
+    const categoryName =
+      clickedElement.parentNode.children[1].innerText;
     LIST.innerHTML = '';
     const categories = await MealAPI.getByCategory(categoryName);
     const allLikes = await InvolvementAPI.getAllLikes();
@@ -62,7 +65,7 @@ document.addEventListener('click', async (e) => {
 
     await InvolvementAPI.addComment(
       { username: '', comment: '' },
-      mealId,
+      mealId
     );
 
     let comments = await InvolvementAPI.getComments(mealId);
