@@ -37,7 +37,7 @@ li {
 
 .navbar {
   height: 50px;
-  padding: 10px 24px;
+  padding: 10px 32px;
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -72,31 +72,56 @@ span.image {
 }
 
 .landing {
-  margin: 80px auto;
+  margin: 50px auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .hero {
   height: calc(100vh - 80px);
-  width: 70%;
+  width: 100%;
   margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 64px;
+  gap: 32px;
+  background-color: rgb(245, 244, 244);
+  box-shadow: 0 10px 20px rgba(145, 145, 145, 0.699);
+  border-bottom: 1px double lightblue;
 }
 
-.hero .category__list {
+.hero__title {
+  font-size: 2rem;
+}
+
+.hero__description {
+  padding: 12px;
+  border: 1px solid rgb(194, 196, 197);
+  background-color: white;
+}
+
+.counter {
+  width: 320px;
+  padding: 0 8px;
+  align-self: center;
+}
+
+.categories__list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   list-style: none;
+  gap: 24px;
+  padding: 8px;
 }
 
 .category__card {
+  background-color: white;
   display: flex;
-  margin: 1.5%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -124,7 +149,7 @@ span.image {
 }
 
 .recipes {
-  margin: 80px auto;
+  margin: 0 auto;
   width: 90%;
 }
 
@@ -213,10 +238,18 @@ footer {
   font-size: 10px;
 }
 
+.mobile_visible {
+  display: unset;
+}
+
+.desktop_visible {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .navbar {
     height: 70px;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   .navbar__recipes {
@@ -283,5 +316,13 @@ footer {
     width: 70%;
     margin: 10px auto;
     padding: 5px 10px;
+  }
+
+  .mobile_visible {
+    display: none;
+  }
+
+  .desktop_visible {
+    display: unset;
   }
 }

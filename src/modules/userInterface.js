@@ -1,7 +1,7 @@
 import InvolvementAPI from './involvementAPI.js';
 
 const recipeList = document.querySelector('.recipes__list');
-const categoryList = document.querySelector('.category__list');
+const categoryList = document.querySelector('.categories__list');
 
 export default class UserInterface {
   static displayRecipes(mealsArr, likes = []) {
@@ -73,13 +73,13 @@ export default class UserInterface {
     }`;
   }
 
-  static itemCount() {
-    const itemList = document.querySelector('.recipes__list');
+  static itemCount(type) {
+    const itemList = document.querySelector(`.${type}__list`);
     return itemList.children.length;
   }
 
   static counterText(type) {
-    const text = document.querySelector('.navbar__recipes');
-    text.innerHTML = `${type} (${this.itemCount()})`;
+    const text = document.querySelector('.landing__counter');
+    text.innerHTML = `${type} (${this.itemCount(type.toLowerCase())})`;
   }
 }
