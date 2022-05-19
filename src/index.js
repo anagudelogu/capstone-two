@@ -20,8 +20,7 @@ LIST.addEventListener('click', async (e) => {
   const clickedElement = e.target;
 
   if (clickedElement.classList.contains('categories__button')) {
-    const categoryName =
-      clickedElement.parentNode.children[0].innerText;
+    const categoryName = clickedElement.parentNode.children[0].innerText;
     LIST.innerHTML = '';
     const pasta = await MealAPI.getByCategory(categoryName);
     const allLikes = await InvolvementAPI.getAllLikes();
@@ -42,11 +41,10 @@ LIST.addEventListener('click', async (e) => {
     const card = clickedElement.parentNode.parentNode;
     const mealId = card.getAttribute('id');
     const meal = await MealAPI.getRecipe(mealId);
-    console.log(meal);
 
     await InvolvementAPI.addComment(
       { username: '', comment: '' },
-      mealId
+      mealId,
     );
 
     let comments = await InvolvementAPI.getComments(mealId);
