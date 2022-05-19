@@ -1,33 +1,53 @@
 import './index.css';
+import logo from './assets/burger-logo.png';
 import UserInterface from './modules/userInterface.js';
 import MealAPI from './modules/mealAPI.js';
 import CurrentCategory from './modules/currentCategory.js';
 import CurrentMeal from './modules/currentMeal.js';
 import InvolvementAPI from './modules/involvementAPI.js';
 import PopUp from './modules/popUp.js';
+import Menu from './modules/menu.js';
+
+const imageContainer = document.querySelectorAll('.image');
+
+Array.from(imageContainer).forEach((container) => {
+  const logoImg = new Image();
+  logoImg.src = logo;
+  logoImg.classList.add('hero__logo');
+  logoImg.alt = 'Yummy Recipes Logo';
+  container.appendChild(logoImg);
+});
 
 const asyncEnv = async () => {
   const categories = await MealAPI.getCategories();
   UserInterface.displayCategories(categories);
+  Menu.displayCategories(categories);
   UserInterface.counterText('Categories');
 };
 
 asyncEnv();
 
-const LIST = document.querySelector('.recipes__list');
+const LIST = document.querySelector('.list');
 
-LIST.addEventListener('click', async (e) => {
+document.addEventListener('click', async (e) => {
   const clickedElement = e.target;
 
-  if (clickedElement.classList.contains('categories__button')) {
-    const categoryName = clickedElement.parentNode.children[0].innerText;
+  if (clickedElement.classList.contains('category__image')) {
+    const categoryName = clickedElement.parentNode.children[1].innerText;
     LIST.innerHTML = '';
-    const pasta = await MealAPI.getByCategory(categoryName);
+    const categories = await MealAPI.getByCategory(categoryName);
     const allLikes = await InvolvementAPI.getAllLikes();
-    const currentCategory = new CurrentCategory(pasta);
+    const currentCategory = new CurrentCategory(categories);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
 
     UserInterface.counterText('Recipes');
+  }
+
+  if (clickedElement.classList.contains('hero__logo')) {
+    LIST.innerHTML = '';
+    const categories = await MealAPI.getCategories();
+    UserInterface.displayCategories(categories);
+    UserInterface.counterText('Categories');
   }
 
   if (clickedElement.classList.contains('fa-heart')) {

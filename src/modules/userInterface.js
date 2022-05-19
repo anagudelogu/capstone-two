@@ -1,6 +1,6 @@
 import InvolvementAPI from './involvementAPI.js';
 
-const recipeList = document.querySelector('.recipes__list');
+const list = document.querySelector('.list');
 
 export default class UserInterface {
   static displayRecipes(mealsArr, likes = []) {
@@ -25,18 +25,17 @@ export default class UserInterface {
     strCategoryThumb,
   }) {
     const LI = document.createElement('li');
-    LI.classList.add('recipes__card');
+    LI.classList.add('category__card');
     LI.setAttribute('id', idCategory);
     LI.innerHTML = `
-      <img class="recipes__image" src="${strCategoryThumb}" alt="Delicious ${strCategory}">
-      <div class="recipes__content">
-          <div class="recipes__header">
-              <h2 class="recipes__title">${strCategory}</h2>
+      <img class="category__image" src="${strCategoryThumb}" alt="Delicious ${strCategory}">
+      <div class="category__content">
+          <div class="category__header">
+              <h2 class="category__title">${strCategory}</h2>
           </div>
-          <button class="button categories__button">View recipes!</button>
       </div>
     `;
-    recipeList.appendChild(LI);
+    list.appendChild(LI);
   }
 
   static createCard(
@@ -60,7 +59,7 @@ export default class UserInterface {
           <button class="recipes__reservations">Reservations</button>
       </div>
     `;
-    recipeList.appendChild(LI);
+    list.appendChild(LI);
   }
 
   static addToLikesCounterDOM(element) {
@@ -73,13 +72,16 @@ export default class UserInterface {
     }`;
   }
 
-  static itemCount() {
-    const itemList = document.querySelector('.recipes__list');
-    return itemList.children.length;
+  static counterText(type) {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach((counter) => {
+      counter.innerHTML = `${type} (${this.itemCount(
+        counter.nextElementSibling,
+      )})`;
+    });
   }
 
-  static counterText(type) {
-    const text = document.querySelector('.navbar__recipes');
-    text.innerHTML = `${type} (${this.itemCount()})`;
+  static itemCount(element) {
+    return element.children.length;
   }
 }

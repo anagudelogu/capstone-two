@@ -4,26 +4,34 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Recipe</title>
+        <title>Yummy Recipes!</title>
         <script src="https://kit.fontawesome.com/1097d30f85.js" crossorigin="anonymous"></script> 
     <script defer src="main.js"></script></head>
     <body>
         <header>
             <nav class="navbar">
-                <a href="#" class="navbar__logo"><i class="fa-solid fa-kitchen-set fa-5x"></i></a>
-                <a href="#" class="navbar__recipes">Categories (0)</a>
-                <div class="navbar__hamburger">
+                <a href="#" class="navbar__logo"><span class="image"></span></a>
+                <a href="#" class="desktop_visible">Menu</a>
+                <div class="navbar__hamburger mobile_visible">
                     <span><i class="fa-solid fa-bars"></i></span>
                     <span><i class="fa-solid fa-xmark"></i></span>
+                </div>
+                <div class="menu active">
+                    <a href="#counter" class="menu__categories counter"> Categories (0)</a>
+                    <ul class="menu__list">
+                    </ul>
                 </div>
             </nav>
         </header>
         <main>
             <section class="landing">
-
-            </section>
-            <section class="recipes">
-                <ul class="recipes__list">
+                <article class="hero">
+                    <span class="image"></span>
+                    <h1 class="hero__title">Yummy Recipes!</h1>
+                    <p class="hero__description">Find your favorite recipes here!</p>
+                </article>
+                <h2 id="counter" class="landing__counter counter">Categories (0)</h2>
+                <ul class="list">
                 </ul>
             </section>
         </main>
