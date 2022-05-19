@@ -1,10 +1,21 @@
 import './index.css';
+import logo from './assets/burger-logo.png';
 import UserInterface from './modules/userInterface.js';
 import MealAPI from './modules/mealAPI.js';
 import CurrentCategory from './modules/currentCategory.js';
 import CurrentMeal from './modules/currentMeal.js';
 import InvolvementAPI from './modules/involvementAPI.js';
 import PopUp from './modules/popUp.js';
+
+const imageContainer = document.querySelectorAll('.image');
+
+Array.from(imageContainer).forEach((container) => {
+  const logoImg = new Image();
+  logoImg.src = logo;
+  logoImg.classList.add('hero__logo');
+  logoImg.alt = 'Yummy Recipes Logo';
+  container.appendChild(logoImg);
+});
 
 const asyncEnv = async () => {
   const categories = await MealAPI.getCategories();
@@ -20,7 +31,8 @@ LIST.addEventListener('click', async (e) => {
   const clickedElement = e.target;
 
   if (clickedElement.classList.contains('categories__button')) {
-    const categoryName = clickedElement.parentNode.children[0].innerText;
+    const categoryName =
+      clickedElement.parentNode.children[0].innerText;
     LIST.innerHTML = '';
     const pasta = await MealAPI.getByCategory(categoryName);
     const allLikes = await InvolvementAPI.getAllLikes();
@@ -44,7 +56,7 @@ LIST.addEventListener('click', async (e) => {
 
     await InvolvementAPI.addComment(
       { username: '', comment: '' },
-      mealId,
+      mealId
     );
 
     let comments = await InvolvementAPI.getComments(mealId);
