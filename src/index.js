@@ -32,6 +32,11 @@ const LIST = document.querySelector('.list');
 document.addEventListener('click', async (e) => {
   const clickedElement = e.target;
 
+  if (clickedElement.classList.contains('menu-toggle')) {
+    document.body.classList.toggle('noScroll');
+    document.querySelector('.menu').classList.toggle('active');
+  }
+
   if (clickedElement.classList.contains('category__image')) {
     const categoryName = clickedElement.parentNode.children[1].innerText;
     LIST.innerHTML = '';
@@ -39,8 +44,17 @@ document.addEventListener('click', async (e) => {
     const allLikes = await InvolvementAPI.getAllLikes();
     const currentCategory = new CurrentCategory(categories);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
-
     UserInterface.counterText('Recipes');
+  }
+
+  if (clickedElement.classList.contains('menu__item')) {
+    const categoryName = clickedElement.children[1].innerText;
+    LIST.innerHTML = '';
+    const categories = await MealAPI.getByCategory(categoryName);
+    const allLikes = await InvolvementAPI.getAllLikes();
+    const currentCategory = new CurrentCategory(categories);
+    UserInterface.displayRecipes(currentCategory.meals, allLikes);
+    UserInterface.counterText('Categories');
   }
 
   if (clickedElement.classList.contains('hero__logo')) {
