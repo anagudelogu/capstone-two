@@ -5,12 +5,15 @@ const urlMap = {
   categories:
     'https://www.themealdb.com/api/json/v1/1/categories.php',
   byCategory: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=',
+  byMealId: 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=',
 };
 
 export default class MealAPI {
-  static async getRandomRecipe() {
+  static async getRecipe(id) {
     try {
-      const fetchRequest = new FetchRequest({ url: urlMap.random });
+      const fetchRequest = new FetchRequest({
+        url: `${urlMap.byMealId}${id}`,
+      });
       const data = await fetchRequest.call();
       return data.meals[0];
     } catch (error) {
