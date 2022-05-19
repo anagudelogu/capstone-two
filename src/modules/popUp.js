@@ -108,7 +108,7 @@ export default class PopUp {
   static instructionsTemplate(instructs) {
     let newInstructs = '';
     instructs.split(/\r?\n/).forEach((line) => {
-      newInstructs += `<li class="popup__instructs_line">${line}</li>`
+      newInstructs += `<li class="popup__instructs_line">${line}</li>`;
     });
     return newInstructs;
   }
