@@ -1,18 +1,19 @@
 export default class CurrentMeal {
-  id;
+  idMeal;
 
-  name;
+  strMeal;
 
-  image;
+  strMealThumb;
 
-  recipe;
+  strInstructions;
 
   comments;
 
-  constructor(currentMeal) {
-    this.id = currentMeal.idMeal;
-    this.name = currentMeal.strMeal;
-    this.image = currentMeal.strMealThumb;
-    this.recipe = currentMeal.strInstructions;
+  constructor(currentMeal, comments = []) {
+    this.idMeal = currentMeal.idMeal;
+    this.strMeal = currentMeal.strMeal;
+    this.strMealThumb = currentMeal.strMealThumb;
+    this.strInstructions = currentMeal.strInstructions;
+    this.comments = comments;
   }
 }
