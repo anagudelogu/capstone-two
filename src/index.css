@@ -109,7 +109,7 @@ span.image {
   align-self: center;
 }
 
-.categories__list {
+.list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -151,14 +151,6 @@ span.image {
 .recipes {
   margin: 0 auto;
   width: 90%;
-}
-
-.recipes__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
 }
 
 .recipes__card {
@@ -270,7 +262,7 @@ footer {
     margin-bottom: 100px;
   }
 
-  .recipes__list {
+  .list {
     justify-content: flex-start;
     margin: 0 auto;
   }

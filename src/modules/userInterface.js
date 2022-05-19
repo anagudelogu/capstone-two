@@ -1,7 +1,6 @@
 import InvolvementAPI from './involvementAPI.js';
 
-const recipeList = document.querySelector('.recipes__list');
-const categoryList = document.querySelector('.categories__list');
+const list = document.querySelector('.list');
 
 export default class UserInterface {
   static displayRecipes(mealsArr, likes = []) {
@@ -36,7 +35,7 @@ export default class UserInterface {
           </div>
       </div>
     `;
-    categoryList.appendChild(LI);
+    list.appendChild(LI);
   }
 
   static createCard(
@@ -60,7 +59,7 @@ export default class UserInterface {
           <button class="recipes__reservations">Reservations</button>
       </div>
     `;
-    recipeList.appendChild(LI);
+    list.appendChild(LI);
   }
 
   static addToLikesCounterDOM(element) {
@@ -73,13 +72,13 @@ export default class UserInterface {
     }`;
   }
 
-  static itemCount(type) {
-    const itemList = document.querySelector(`.${type}__list`);
-    return itemList.children.length;
-  }
-
   static counterText(type) {
     const text = document.querySelector('.landing__counter');
-    text.innerHTML = `${type} (${this.itemCount(type.toLowerCase())})`;
+    text.innerHTML = `${type} (${this.itemCount()})`;
+  }
+
+  static itemCount() {
+    const itemList = document.querySelector('.list');
+    return itemList.children.length;
   }
 }
