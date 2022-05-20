@@ -263,19 +263,46 @@ span.image {
 .recipes__popup {
   display: block;
   width: 85%;
-  height: 75%;
-  padding: 4%;
+  height: 80%;
   position: fixed;
   background-color: white;
   backdrop-filter: blur(2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   top: 12.5%;
   left: 7.5%;
   overflow-y: auto;
 }
 
 .recipes__popup_image {
-  height: 60%;
-  width: auto;
+  width: 100%;
+}
+
+.recipes__popup .fa-xmark {
+  color: white;
+  background-color: black;
+  padding: 6px 8px;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.recipes__popup_title {
+  padding: 4%;
+  font-size: 1.3rem;
+}
+
+.recipes__popup_instructs {
+  padding: 8%;
+  max-height: 60vh;
+  overflow: auto;
+  background-color: rgb(245, 244, 244);
+}
+
+.popup__instructs_line {
+  margin-top: 16px;
+  list-style: decimal;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
 }
 
 footer {
