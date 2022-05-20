@@ -27,6 +27,7 @@ export default class PopUp {
     `;
 
     container.querySelector('i').addEventListener('click', () => {
+      document.body.classList.remove('noScroll');
       container.remove();
     });
 

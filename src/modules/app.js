@@ -106,6 +106,7 @@ class App {
     const card = clickedElement.parentNode.parentNode;
     const mealId = card.getAttribute('id');
     const meal = await MealAPI.getRecipe(mealId);
+    document.body.classList.add('noScroll');
 
     await InvolvementAPI.addComment(
       { username: '', comment: '' },
