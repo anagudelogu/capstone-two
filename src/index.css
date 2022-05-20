@@ -212,6 +212,7 @@ span > i.menu-toggle {
   justify-content: center;
   align-items: center;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
 }
 
 .category__image {
@@ -276,12 +277,16 @@ span > i.menu-toggle {
   margin-bottom: 20px;
 }
 
-.recipes__comments,
-.recipes__reservations {
+.fa-heart {
+  cursor: pointer;
+}
+
+.recipes__comments {
   display: block;
   width: 70%;
   margin: 10px auto;
   padding: 5px 10px;
+  cursor: pointer;
 }
 
 .recipes__popup {
