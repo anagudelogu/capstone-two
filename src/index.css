@@ -153,6 +153,10 @@ span.image {
   border-bottom: 1px double lightblue;
 }
 
+.hidden {
+  display: none;
+}
+
 .hero__title {
   font-size: 2rem;
 }

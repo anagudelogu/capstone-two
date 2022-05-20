@@ -73,7 +73,7 @@ export default class PopUp {
     return `
       <div class="recipes__popup_comments">
         <span class="recipes__popup_comment-count">Comments (${this.data.comments.length})</span>
-        <ul class="recipes__popup_comments">${comments}</ul>
+        <ol class="recipes__popup_comments">${comments}</ol>
         <input class="recipes__popup_input-user" placeholder="User" tabindex=0></input>
         <input  class="recipes__popup_input-comment" placeholder="Comment" tabindex=0></input>
         <button class="recipes__popup_input-submit" type="button" tabindex=0>Comment</button>

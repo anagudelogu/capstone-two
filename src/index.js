@@ -20,8 +20,8 @@ Array.from(imageContainer).forEach((container) => {
 
 const asyncEnv = async () => {
   const categories = await MealAPI.getCategories();
-  UserInterface.displayCategories(categories);
   Menu.displayCategories(categories);
+  UserInterface.displayCategories(categories);
   UserInterface.counterText('Categories');
 };
 
@@ -29,32 +29,55 @@ asyncEnv();
 
 const LIST = document.querySelector('.list');
 
+const toggleMenu = () => {
+  document.body.classList.toggle('noScroll');
+  document.querySelector('.menu').classList.toggle('active');
+}
+
+const goBack = (node, a, b) => {
+  if (a !== b) return node;
+  return goBack(
+    node.parentNode,
+    node.parentNode.getAttribute('class').includes('category'),
+    node.parentNode.parentNode.getAttribute('class').includes('category')
+  );
+}
+
 document.addEventListener('click', async (e) => {
   const clickedElement = e.target;
+  
+  if (clickedElement.classList.contains('navbar')) return;
 
   if (clickedElement.classList.contains('menu-toggle')) {
-    document.body.classList.toggle('noScroll');
-    document.querySelector('.menu').classList.toggle('active');
+    toggleMenu();
   }
-
-  if (clickedElement.classList.contains('category__image')) {
-    const categoryName = clickedElement.parentNode.children[1].innerText;
+  
+  if (clickedElement.getAttribute('class').includes('category')) {
+    const parent = goBack(
+      clickedElement,
+      clickedElement.getAttribute('class').includes('category'),
+      clickedElement.parentNode.getAttribute('class').includes('category')
+    );
+    const categoryName = parent.children[1].innerText;
     LIST.innerHTML = '';
     const categories = await MealAPI.getByCategory(categoryName);
     const allLikes = await InvolvementAPI.getAllLikes();
     const currentCategory = new CurrentCategory(categories);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
     UserInterface.counterText('Recipes');
+    document.querySelector('.hero').classList.add('hidden');
   }
 
-  if (clickedElement.classList.contains('menu__item')) {
+  if (clickedElement.querySelector('.menu__item > *')) {
     const categoryName = clickedElement.children[1].innerText;
     LIST.innerHTML = '';
     const categories = await MealAPI.getByCategory(categoryName);
     const allLikes = await InvolvementAPI.getAllLikes();
     const currentCategory = new CurrentCategory(categories);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
-    UserInterface.counterText('Categories');
+    UserInterface.counterText('Recipes');
+    document.querySelector('.hero').classList.add('hidden');
+    toggleMenu();
   }
 
   if (clickedElement.classList.contains('hero__logo')) {
@@ -62,6 +85,9 @@ document.addEventListener('click', async (e) => {
     const categories = await MealAPI.getCategories();
     UserInterface.displayCategories(categories);
     UserInterface.counterText('Categories');
+    document.body.classList.remove('noScroll');
+    document.querySelector('.menu').classList.remove('active');
+    document.querySelector('.hero').classList.remove('hidden');
   }
 
   if (clickedElement.classList.contains('fa-heart')) {
@@ -82,9 +108,7 @@ document.addEventListener('click', async (e) => {
     );
 
     let comments = await InvolvementAPI.getComments(mealId);
-
     comments = comments.filter((comment) => comment.username !== '');
-
     const currentMeal = new CurrentMeal(meal, comments);
 
     PopUp.pop({

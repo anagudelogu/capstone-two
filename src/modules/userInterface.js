@@ -74,10 +74,12 @@ export default class UserInterface {
 
   static counterText(type) {
     const counters = document.querySelectorAll('.counter');
+    let i = 0;
     counters.forEach((counter) => {
-      counter.innerHTML = `${type} (${this.itemCount(
+      counter.innerHTML = `${i < 1 ? 'Categories' : type} (${this.itemCount(
         counter.nextElementSibling,
       )})`;
+      i += 1;
     });
   }
 
