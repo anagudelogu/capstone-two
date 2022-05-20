@@ -61,7 +61,6 @@ export default class App {
       clickedElement,
       { type: 'class', item: 'category' }
     );
-    console.log(clickedElement);
     const categoryName = parent.children[1].innerText;
     this.LIST.innerHTML = '';
     const category = await MealAPI.getByCategory(categoryName);
@@ -125,7 +124,11 @@ export default class App {
   }
 
   setListeners() {
-    this.menuToggler.addEventListener('click', this.toggleMenu);
+    this.menuToggler.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        this.toggleMenu();
+      });
+    });
     this.menuItems.forEach((item) => {
       item.addEventListener('click', (e) => {
         const clickedElement = e.target;
@@ -159,7 +162,7 @@ export default class App {
   }
 
   selectTags() {
-    this.menuToggler = document.querySelector('.menu-toggle');
+    this.menuToggler = document.querySelectorAll('.menu-toggle');
     this.menuItems = document.querySelectorAll('.menu__item');
     this.heroLogos = document.querySelectorAll('.hero__logo');
     this.LIST = document.querySelector('.list');
