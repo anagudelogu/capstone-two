@@ -479,6 +479,16 @@ footer {
     justify-content: space-between;
   }
 
+  .landing {
+    margin-top: 90px;
+    gap: 20px;
+  }
+
+  .landing__counter {
+    width: 80%;
+    font-size: 1.69rem;
+  }
+
   .navbar__recipes {
     display: block;
   }
@@ -504,6 +514,7 @@ footer {
 
   .recipes__card {
     width: 20%;
+    min-width: 180px;
     max-width: 200px;
     display: flex;
     flex-direction: column;
