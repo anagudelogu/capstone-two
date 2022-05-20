@@ -87,10 +87,6 @@ span.image {
   font-size: 2rem;
 }
 
-.navbar__hamburger :nth-child(2) {
-  display: none;
-}
-
 .menu {
   position: fixed;
   top: 50px;
@@ -175,8 +171,12 @@ span.image {
   border-bottom: 1px double lightblue;
 }
 
-.hidden {
+span > i.menu-toggle.hidden {
   display: none;
+}
+
+span > i.menu-toggle {
+  display: block;
 }
 
 .hero__title {

@@ -44,12 +44,18 @@ class App {
   static toggleMenu() {
     document.body.classList.toggle('noScroll');
     document.querySelector('.menu').classList.toggle('active');
+    document.querySelectorAll('.menu-toggle').forEach((icon) => {
+      icon.classList.toggle('hidden');
+    });
   }
 
   static closeMenu() {
     document.body.classList.remove('noScroll');
     document.querySelector('.menu').classList.remove('active');
     document.querySelector('.hero').classList.remove('hidden');
+    const [burger, close] = document.querySelectorAll('span > i.menu-toggle');
+    burger.classList.remove('hidden');
+    close.classList.add('hidden');
   }
 
   static hideLanding() {
