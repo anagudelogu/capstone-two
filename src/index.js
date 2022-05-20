@@ -35,9 +35,11 @@ const toggleMenu = () => {
 };
 
 const goBackToCommonParent = (node, a, b) => {
-  if (node.getAttribute(a.type).includes(a.item)
-      !== node.parentNode.getAttribute(b.type).includes(b.item)
-  ) return node;
+  if (
+    node.getAttribute(a.type).includes(a.item) !==
+    node.parentNode.getAttribute(b.type).includes(b.item)
+  )
+    return node;
   return goBackToCommonParent(node.parentNode, a, b);
 };
 
@@ -55,7 +57,7 @@ document.addEventListener('click', async (e) => {
     const parent = goBackToCommonParent(
       clickedElement,
       { type: 'class', item: 'menu__item' },
-      { type: 'class', item: 'menu__item' },
+      { type: 'class', item: 'menu__item' }
     );
     const categoryName = parent.children[1].innerText;
     LIST.innerHTML = '';
@@ -73,7 +75,7 @@ document.addEventListener('click', async (e) => {
     const parent = goBackToCommonParent(
       clickedElement,
       { type: 'class', item: 'category' },
-      { type: 'class', item: 'category' },
+      { type: 'class', item: 'category' }
     );
     const categoryName = parent.children[1].innerText;
     LIST.innerHTML = '';
@@ -112,13 +114,12 @@ document.addEventListener('click', async (e) => {
 
     await InvolvementAPI.addComment(
       { username: '', comment: '' },
-      mealId,
+      mealId
     );
 
     let comments = await InvolvementAPI.getComments(mealId);
     comments = comments.filter((comment) => comment.username !== '');
     const currentMeal = new CurrentMeal(meal, comments);
-
     PopUp.pop({
       ...currentMeal,
       comments,

@@ -13,14 +13,21 @@ export default class PopUp {
     container.setAttribute('class', 'recipes__popup');
 
     const commentSection = PopUp.commentsTemplate(this.data.type);
-    const reservationSection = PopUp.reservationsTemplate(this.data.type);
-    const instructs = PopUp.instructionsTemplate(this.data.strInstructions);
+    const reservationSection = PopUp.reservationsTemplate(
+      this.data.type
+    );
+    const instructs = PopUp.instructionsTemplate(
+      this.data.strInstructions
+    );
+    const tags = PopUp.tagsTemplate(this.data.strTags);
 
     container.innerHTML = `
       <img class="recipes__popup_image" src="${this.data.strMealThumb}" alt="Delicious ${this.data.strMeal}">
       <i class="fa-solid fa-xmark"></i>
       <h2 class="recipes__popup_title">${this.data.strMeal}</h2>
+      <ul class="recipes__popup_tags">${tags}</ul>
       <ul class="recipes__popup_instructs">${instructs}</ul>
+      <span class="recipes__popup_video">Watch a <a href="${this.data.strYoutube}">Video!</a></span>
       ${commentSection}
       ${reservationSection}
     `;
@@ -36,9 +43,20 @@ export default class PopUp {
 
       submit.addEventListener('click', async () => {
         if (user.value === '' || comment.value === '') return;
-        const inputComment = { username: user.value, comment: comment.value };
-        PopUp.createCommentOnDOM(user, comment, ulContainer, inputComment);
-        await InvolvementAPI.addComment(inputComment, this.data.idMeal);
+        const inputComment = {
+          username: user.value,
+          comment: comment.value,
+        };
+        PopUp.createCommentOnDOM(
+          user,
+          comment,
+          ulContainer,
+          inputComment
+        );
+        await InvolvementAPI.addComment(
+          inputComment,
+          this.data.idMeal
+        );
         PopUp.commentCountAdd(container);
         [user.value, comment.value] = ['', ''];
       });
@@ -87,21 +105,24 @@ export default class PopUp {
   }
 
   static createCommentOnDOM(user, comment, container, inputComment) {
-    const [day, month, year] = new Date().toLocaleDateString().split('/');
-    const li = PopUp.displayComment(
-      {
-        ...inputComment,
-        creation_date:
-          `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`,
-      },
-    );
+    const [day, month, year] = new Date()
+      .toLocaleDateString()
+      .split('/');
+    const li = PopUp.displayComment({
+      ...inputComment,
+      creation_date: `${year}-${month < 10 ? '0' : ''}${month}-${
+        day < 10 ? '0' : ''
+      }${day}`,
+    });
     container.innerHTML += li;
   }
 
   static commentCountAdd(container) {
     this.commentCount += 1;
     const commentsNum = this.data.comments.length + this.commentCount;
-    container.querySelector('.recipes__popup_comment-count').innerHTML = `Comments (${commentsNum})`;
+    container.querySelector(
+      '.recipes__popup_comment-count'
+    ).innerHTML = `Comments (${commentsNum})`;
     return commentsNum;
   }
 
@@ -111,5 +132,14 @@ export default class PopUp {
       newInstructs += `<li class="popup__instructs_line">${line}</li>`;
     });
     return newInstructs;
+  }
+
+  static tagsTemplate(tags) {
+    if (!tags) return '';
+    let tagsUl = '';
+    tags.split(',').forEach((tag) => {
+      tagsUl += `<li class"recipes__popup_tagLi">${tag}</li>`;
+    });
+    return tagsUl;
   }
 }
