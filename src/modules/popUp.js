@@ -12,11 +12,9 @@ export default class PopUp {
     container.setAttribute('id', this.data.idMeal);
     container.setAttribute('class', 'recipes__popup');
 
-
     const tags = PopUp.tagsTemplate(this.data.strTags);
     const commentSection = PopUp.commentsTemplate();
     const instructs = PopUp.instructionsTemplate(this.data.strInstructions);
-
 
     container.innerHTML = `
       <img class="recipes__popup_image" src="${this.data.strMealThumb}" alt="Delicious ${this.data.strMeal}">
