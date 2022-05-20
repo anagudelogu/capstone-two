@@ -12,8 +12,7 @@ export default class PopUp {
     container.setAttribute('id', this.data.idMeal);
     container.setAttribute('class', 'recipes__popup');
 
-    const commentSection = PopUp.commentsTemplate(this.data.type);
-    const reservationSection = PopUp.reservationsTemplate(this.data.type);
+    const commentSection = PopUp.commentsTemplate();
     const instructs = PopUp.instructionsTemplate(this.data.strInstructions);
 
     container.innerHTML = `
@@ -22,7 +21,6 @@ export default class PopUp {
       <h2 class="recipes__popup_title">${this.data.strMeal}</h2>
       <ul class="recipes__popup_instructs">${instructs}</ul>
       ${commentSection}
-      ${reservationSection}
     `;
 
     container.querySelector('i').addEventListener('click', () => {
@@ -64,8 +62,7 @@ export default class PopUp {
       `;
   }
 
-  static commentsTemplate(type) {
-    if (type !== 'Recipe') return '';
+  static commentsTemplate() {
     let comments = '';
     this.data.comments.forEach((comment) => {
       comments += PopUp.displayComment(comment);
@@ -79,11 +76,6 @@ export default class PopUp {
         <button class="recipes__popup_input-submit" type="button" tabindex=0>Comment</button>
       </div>
     `;
-  }
-
-  static reservationsTemplate(type) {
-    if (type !== 'Reservation') return '';
-    return '';
   }
 
   static createCommentOnDOM(user, comment, container, inputComment) {
