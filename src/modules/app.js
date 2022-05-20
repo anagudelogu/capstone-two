@@ -74,6 +74,7 @@ class App {
     const currentCategory = new CurrentCategory(category);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
     UserInterface.counterText(categoryName + ' Recipes');
+    location.hash = "#counter";
     App.hideLanding();
   }
 
@@ -89,6 +90,7 @@ class App {
     const currentCategory = new CurrentCategory(categories);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
     UserInterface.counterText(categoryName + ' Recipes');
+    location.hash = "#counter";
     App.hideLanding();
     App.toggleMenu();
   }
