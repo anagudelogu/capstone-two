@@ -496,12 +496,12 @@ footer {
   }
 
   .list {
-    justify-content: flex-start;
+    justify-content: center;
     margin: 0 auto;
   }
 
   .recipes__card {
-    width: 30%;
+    width: 16%;
     display: flex;
     flex-direction: column;
     justify-content: center;
