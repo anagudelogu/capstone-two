@@ -7,6 +7,10 @@ export default class CurrentMeal {
 
   strInstructions;
 
+  strTags;
+
+  strYoutube;
+
   comments;
 
   constructor(currentMeal, comments = []) {
@@ -14,6 +18,8 @@ export default class CurrentMeal {
     this.strMeal = currentMeal.strMeal;
     this.strMealThumb = currentMeal.strMealThumb;
     this.strInstructions = currentMeal.strInstructions;
+    this.strTags = currentMeal.strTags;
+    this.strYoutube = currentMeal.strYoutube;
     this.comments = comments;
   }
 }
