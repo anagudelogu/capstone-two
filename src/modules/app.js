@@ -73,8 +73,8 @@ class App {
     const allLikes = await InvolvementAPI.getAllLikes();
     const currentCategory = new CurrentCategory(category);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
-    UserInterface.counterText(categoryName + ' Recipes');
-    window.scrollTo(0,0);
+    UserInterface.counterText(`${categoryName} Recipes`);
+    window.scrollTo(0, 0);
     App.hideLanding();
   }
 
@@ -89,8 +89,8 @@ class App {
     const allLikes = await InvolvementAPI.getAllLikes();
     const currentCategory = new CurrentCategory(categories);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
-    UserInterface.counterText(categoryName + ' Recipes');
-    window.scrollTo(0,0);
+    UserInterface.counterText(`${categoryName} Recipes`);
+    window.scrollTo(0, 0);
     App.hideLanding();
     App.toggleMenu();
   }
