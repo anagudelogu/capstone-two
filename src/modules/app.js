@@ -73,7 +73,7 @@ class App {
     const allLikes = await InvolvementAPI.getAllLikes();
     const currentCategory = new CurrentCategory(category);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
-    UserInterface.counterText('Recipes');
+    UserInterface.counterText(categoryName + ' Recipes');
     App.hideLanding();
   }
 
