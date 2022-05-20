@@ -87,6 +87,7 @@ span.image {
   flex-direction: column;
   transform: translateX(100%);
   overflow-y: auto;
+  transition: all 0.5s ease;
 }
 
 .menu.active {
@@ -150,6 +151,10 @@ span.image {
   background-color: rgb(245, 244, 244);
   box-shadow: 0 10px 20px rgba(145, 145, 145, 0.699);
   border-bottom: 1px double lightblue;
+}
+
+.hidden {
+  display: none;
 }
 
 .hero__title {
