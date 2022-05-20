@@ -1,2 +1,3 @@
-import App from "./modules/app";
-const app = new App();
+import app from './modules/app.js';
+
+app.start();

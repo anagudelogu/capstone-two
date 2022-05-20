@@ -8,12 +8,12 @@ import InvolvementAPI from './involvementAPI.js';
 import PopUp from './popUp.js';
 import Menu from './menu.js';
 
-export default class App {
-  constructor () {
+class App {
+  start() {
     this.imageContainer = document.querySelectorAll('.image');
     this.asyncEnv();
   }
-  
+
   setLogo() {
     Array.from(this.imageContainer).forEach((container) => {
       const logoImg = new Image();
@@ -25,14 +25,14 @@ export default class App {
   }
 
   async asyncEnv() {
-    this.setLogo()
+    this.setLogo();
     const categories = await MealAPI.getCategories();
     Menu.displayCategories(categories);
     UserInterface.displayCategories(categories);
     UserInterface.counterText('Categories');
     this.selectTags();
     this.setListeners();
-  };
+  }
 
   goBackToCommonParent = (node, a) => {
     if (node.getAttribute(a.type).includes(a.item)
@@ -41,25 +41,25 @@ export default class App {
     return this.goBackToCommonParent(node.parentNode, a);
   };
 
-  toggleMenu() {
+  static toggleMenu() {
     document.body.classList.toggle('noScroll');
     document.querySelector('.menu').classList.toggle('active');
-  };
+  }
 
-  closeMenu() {
+  static closeMenu() {
     document.body.classList.remove('noScroll');
     document.querySelector('.menu').classList.remove('active');
     document.querySelector('.hero').classList.remove('hidden');
   }
 
-  hideLanding() {
+  static hideLanding() {
     document.querySelector('.hero').classList.add('hidden');
   }
 
-  async selectCategory(clickedElement) {
+  selectCategory = async (clickedElement) => {
     const parent = this.goBackToCommonParent(
       clickedElement,
-      { type: 'class', item: 'category' }
+      { type: 'class', item: 'category' },
     );
     const categoryName = parent.children[1].innerText;
     this.LIST.innerHTML = '';
@@ -68,13 +68,13 @@ export default class App {
     const currentCategory = new CurrentCategory(category);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
     UserInterface.counterText('Recipes');
-    this.hideLanding();
+    App.hideLanding();
   }
 
-  async menuLoadCategories(clickedElement) {
+  menuLoadCategories = async (clickedElement) => {
     const parent = this.goBackToCommonParent(
       clickedElement,
-      { type: 'class', item: 'menu__item' }
+      { type: 'class', item: 'menu__item' },
     );
     const categoryName = parent.children[1].innerText;
     this.LIST.innerHTML = '';
@@ -83,26 +83,26 @@ export default class App {
     const currentCategory = new CurrentCategory(categories);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
     UserInterface.counterText('Recipes');
-    this.hideLanding();
-    this.toggleMenu();
+    App.hideLanding();
+    App.toggleMenu();
   }
 
-  async logoLoadCategories() {
+  logoLoadCategories = async () => {
     this.LIST.innerHTML = '';
     const categories = await MealAPI.getCategories();
     UserInterface.displayCategories(categories);
     UserInterface.counterText('Categories');
-    this.closeMenu();
+    App.closeMenu();
   }
 
-  async addLike(clickedElement) {
+  addLike = async (clickedElement) => {
     const card = clickedElement.parentNode.parentNode.parentNode;
     const mealId = card.getAttribute('id');
     await InvolvementAPI.addLike(mealId);
     UserInterface.addToLikesCounterDOM(card);
   }
 
-  async loadPopup(clickedElement) {
+  loadPopup = async (clickedElement) => {
     const card = clickedElement.parentNode.parentNode;
     const mealId = card.getAttribute('id');
     const meal = await MealAPI.getRecipe(mealId);
@@ -123,23 +123,18 @@ export default class App {
     });
   }
 
+  static forEachListener(items, func) {
+    items.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        func(e.target);
+      });
+    });
+  }
+
   setListeners() {
-    this.menuToggler.forEach((item) => {
-      item.addEventListener('click', (e) => {
-        this.toggleMenu();
-      });
-    });
-    this.menuItems.forEach((item) => {
-      item.addEventListener('click', (e) => {
-        const clickedElement = e.target;
-        this.menuLoadCategories(clickedElement);
-      });
-    });
-    this.heroLogos.forEach((item) => {
-      item.addEventListener('click', (e) => {
-        this.logoLoadCategories();
-      });
-    });
+    App.forEachListener(this.menuToggler, App.toggleMenu);
+    App.forEachListener(this.menuItems, this.menuLoadCategories);
+    App.forEachListener(this.heroLogos, this.logoLoadCategories);
 
     this.LIST.addEventListener('click', (e) => {
       const clickedElement = e.target;
@@ -156,7 +151,6 @@ export default class App {
 
       if (clickedElement.classList.contains('recipes__comments')) {
         this.loadPopup(clickedElement);
-        return;
       }
     });
   }
@@ -168,3 +162,7 @@ export default class App {
     this.LIST = document.querySelector('.list');
   }
 }
+
+const app = new App();
+
+export default app;
