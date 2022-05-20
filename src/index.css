@@ -157,6 +157,10 @@ span.image {
   gap: 40px;
 }
 
+.hero.hidden {
+  display: none;
+}
+
 .landing__counter.counter {
   width: 80%;
   font-size: 1.3rem;
