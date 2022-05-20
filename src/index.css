@@ -164,6 +164,7 @@ span.image {
 .landing__counter.counter {
   width: 80%;
   font-size: 1.3rem;
+  margin-top: 20px;
 }
 
 .hero {
