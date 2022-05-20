@@ -56,7 +56,6 @@ export default class UserInterface {
   likes === 1 ? '' : 's'
 }</span>
           <button class="recipes__comments">Comments</button>
-          <button class="recipes__reservations">Reservations</button>
       </div>
     `;
     list.appendChild(LI);
