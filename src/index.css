@@ -240,10 +240,12 @@ span.image {
   justify-content: center;
   align-items: center;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  border-radius: 12px;
 }
 
 .recipes__image {
   width: 100%;
+  border-radius: 12px 12px 0 0;
 }
 
 .recipes__content {
@@ -501,20 +503,28 @@ footer {
   }
 
   .recipes__card {
-    width: 16%;
+    width: 20%;
+    max-width: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    height: 385px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 12px;
   }
 
   .recipes__image {
     width: 100%;
+    border-radius: 12px 12px 0 0;
   }
 
   .recipes__content {
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     padding-inline: 20px;
   }
 
@@ -522,25 +532,31 @@ footer {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 8px;
   }
 
   .recipes__title {
-    font-size: 1.3rem;
+    font-size: 0.95rem;
+    line-height: 1.15rem;
+    max-width: 130px;
+    align-self: center;
   }
 
   .recipes__likes {
     display: block;
-    margin-top: -10px;
-    margin-bottom: 20px;
+    margin: 10px 0;
   }
 
-  .recipes__comments,
-  .recipes__reservations {
+  .recipes__comments{
     display: block;
     width: 70%;
     margin: 10px auto;
     padding: 5px 10px;
+  }
+
+  .recipes__comments:last-of-type {
+    margin-top: auto;
   }
 
   .mobile_visible {
