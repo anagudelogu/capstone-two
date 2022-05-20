@@ -32,19 +32,18 @@ const LIST = document.querySelector('.list');
 const toggleMenu = () => {
   document.body.classList.toggle('noScroll');
   document.querySelector('.menu').classList.toggle('active');
-}
+};
 
 const goBackToCommonParent = (node, a, b) => {
-  console.log(a,b);
-  if (node.getAttribute(a.type).includes(a.item) 
+  if (node.getAttribute(a.type).includes(a.item)
       !== node.parentNode.getAttribute(b.type).includes(b.item)
-    ) return node;
+  ) return node;
   return goBackToCommonParent(node.parentNode, a, b);
-}
+};
 
 document.addEventListener('click', async (e) => {
   const clickedElement = e.target;
-  
+
   if (clickedElement.classList.contains('navbar')) return;
 
   if (clickedElement.classList.contains('menu-toggle')) {
@@ -53,13 +52,11 @@ document.addEventListener('click', async (e) => {
   }
 
   if (clickedElement.getAttribute('class').includes('menu__item')) {
-    console.log(clickedElement);
     const parent = goBackToCommonParent(
       clickedElement,
-      {type: 'class', item: 'menu__item'},
-      {type: 'class', item: 'menu__item'}
+      { type: 'class', item: 'menu__item' },
+      { type: 'class', item: 'menu__item' },
     );
-    console.log(parent);
     const categoryName = parent.children[1].innerText;
     LIST.innerHTML = '';
     const categories = await MealAPI.getByCategory(categoryName);
@@ -71,14 +68,13 @@ document.addEventListener('click', async (e) => {
     toggleMenu();
     return;
   }
-  
+
   if (clickedElement.getAttribute('class').includes('category')) {
     const parent = goBackToCommonParent(
       clickedElement,
-      {type:'class', item:'category'},
-      {type: 'class', item: 'category'}
+      { type: 'class', item: 'category' },
+      { type: 'class', item: 'category' },
     );
-    console.log(parent);
     const categoryName = parent.children[1].innerText;
     LIST.innerHTML = '';
     const categories = await MealAPI.getByCategory(categoryName);
@@ -128,6 +124,5 @@ document.addEventListener('click', async (e) => {
       comments,
       type: 'Recipe',
     });
-    return;
   }
 });
