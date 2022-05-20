@@ -157,6 +157,11 @@ span.image {
   gap: 40px;
 }
 
+.landing__counter.counter {
+  width: 80%;
+  font-size: 1.3rem;
+}
+
 .hero {
   height: calc(100vh - 80px);
   width: 100%;
