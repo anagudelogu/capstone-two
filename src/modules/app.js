@@ -87,13 +87,12 @@ export default class App {
     this.toggleMenu();
   }
 
-  async logoLoadCategories(clickedElement) {
+  async logoLoadCategories() {
     this.LIST.innerHTML = '';
     const categories = await MealAPI.getCategories();
     UserInterface.displayCategories(categories);
     UserInterface.counterText('Categories');
     this.closeMenu();
-    return clickedElement;
   }
 
   async addLike(clickedElement) {
@@ -124,20 +123,15 @@ export default class App {
     });
   }
 
-  forEachListener(items, func) {
-    items.forEach((item) => {
+  setListeners() {
+    this.menuToggler.forEach((item) => {
       item.addEventListener('click', (e) => {
-        const clickedElement = e.target;
-        func(clickedElement);
+        this.toggleMenu();
       });
     });
-  }
-
-  setListeners() {
-    
     this.menuItems.forEach((item) => {
       item.addEventListener('click', (e) => {
-        
+        const clickedElement = e.target;
         this.menuLoadCategories(clickedElement);
       });
     });
