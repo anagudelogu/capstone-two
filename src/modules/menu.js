@@ -15,7 +15,10 @@ export default class Menu {
     const LI = document.createElement('li');
     LI.classList.add('menu__item');
     LI.setAttribute('id', idCategory);
-    LI.innerHTML = `<img src="${strCategoryThumb}" alt="Category ${strCategory}"><span>${strCategory}</span>`;
+    LI.innerHTML = `
+      <img class="menu__item__img" src="${strCategoryThumb}" alt="Category ${strCategory}">
+      <span class="menu__item__category">${strCategory}</span>`
+      ;
 
     menuList.appendChild(LI);
   }
