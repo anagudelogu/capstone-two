@@ -505,11 +505,11 @@ footer {
     width: 32%;
     transform: translateX(100vw);
   }
-  
+
   .menu.active {
     transform: translateX(70vw);
   }
-  
+
   .menu-toggle {
     color: white !important;
     font-size: 1.3rem !important;
@@ -608,7 +608,7 @@ footer {
     margin: 10px 0;
   }
 
-  .recipes__comments{
+  .recipes__comments {
     display: block;
     width: 70%;
     margin: 10px auto;
@@ -638,7 +638,7 @@ footer {
     min-height: 300px;
     padding: 40px;
   }
-  
+
   .popup__instructs_line {
     font-size: 1.1rem;
   }
