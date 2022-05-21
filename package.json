@@ -5,6 +5,10 @@
   "main": "webpack.config.js",
   "private": true,
   "scripts": {
+    "stylefix": "stylelint \"**/*.{css,scss}\" --fix",
+    "style": "stylelint \"**/*.{css,scss}\"",
+    "eslint": "eslint .",
+    "esfix": "eslint . --fix",
     "test": "jest --coverage --env=jsdom --maxWorkers=1",
     "watch-test": "jest --watch *.js",
     "start": "webpack serve --open",
