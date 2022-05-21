@@ -35,8 +35,9 @@ class App {
   }
 
   goBackToCommonParent = (node, a) => {
-    if (node.getAttribute(a.type).includes(a.item)
-        !== node.parentNode.getAttribute(a.type).includes(a.item)
+    if (
+      node.getAttribute(a.type).includes(a.item)
+      !== node.parentNode.getAttribute(a.type).includes(a.item)
     ) return node;
     return this.goBackToCommonParent(node.parentNode, a);
   };
@@ -53,7 +54,9 @@ class App {
     document.body.classList.remove('noScroll');
     document.querySelector('.menu').classList.remove('active');
     document.querySelector('.hero').classList.remove('hidden');
-    const [burger, close] = document.querySelectorAll('span > i.menu-toggle');
+    const [burger, close] = document.querySelectorAll(
+      'span > i.menu-toggle',
+    );
     burger.classList.remove('hidden');
     close.classList.add('hidden');
   }
@@ -63,10 +66,10 @@ class App {
   }
 
   selectCategory = async (clickedElement) => {
-    const parent = this.goBackToCommonParent(
-      clickedElement,
-      { type: 'class', item: 'category' },
-    );
+    const parent = this.goBackToCommonParent(clickedElement, {
+      type: 'class',
+      item: 'category',
+    });
     const categoryName = parent.children[1].innerText;
     this.LIST.innerHTML = '';
     const category = await MealAPI.getByCategory(categoryName);
@@ -76,13 +79,13 @@ class App {
     UserInterface.counterText(`${categoryName} Recipes`);
     window.scrollTo(0, 0);
     App.hideLanding();
-  }
+  };
 
   menuLoadCategories = async (clickedElement) => {
-    const parent = this.goBackToCommonParent(
-      clickedElement,
-      { type: 'class', item: 'menu__item' },
-    );
+    const parent = this.goBackToCommonParent(clickedElement, {
+      type: 'class',
+      item: 'menu__item',
+    });
     const categoryName = parent.children[1].innerText;
     this.LIST.innerHTML = '';
     const categories = await MealAPI.getByCategory(categoryName);
@@ -93,7 +96,7 @@ class App {
     window.scrollTo(0, 0);
     App.hideLanding();
     App.toggleMenu();
-  }
+  };
 
   logoLoadCategories = async () => {
     this.LIST.innerHTML = '';
@@ -101,14 +104,14 @@ class App {
     UserInterface.displayCategories(categories);
     UserInterface.counterText('Categories');
     App.closeMenu();
-  }
+  };
 
   addLike = async (clickedElement) => {
     const card = clickedElement.parentNode.parentNode.parentNode;
     const mealId = card.getAttribute('id');
     await InvolvementAPI.addLike(mealId);
     UserInterface.addToLikesCounterDOM(card);
-  }
+  };
 
   loadPopup = async (clickedElement) => {
     const card = clickedElement.parentNode.parentNode;
@@ -130,7 +133,7 @@ class App {
       comments,
       type: 'Recipe',
     });
-  }
+  };
 
   static forEachListener(items, func) {
     items.forEach((item) => {
