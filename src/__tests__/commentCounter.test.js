@@ -2,7 +2,12 @@ import PopUp from '../modules/popUp.js';
 
 const createEnv = (comments = []) => {
   PopUp.pop({
-    strMeal: 'meal', strMealThumb: 'thumb', idMeal: 0, comments, type: 'Recipe',
+    strMeal: 'meal',
+    strMealThumb: 'thumb',
+    idMeal: 0,
+    comments,
+    type: 'Recipe',
+    strInstructions: '',
   });
   const container = document.createElement('div');
   const el = document.createElement('span');
@@ -26,7 +31,7 @@ describe('Counting number of comments', () => {
     expect(num).toEqual(1);
   });
 
-  it('Add \'n\' comments', (n = 8) => {
+  it("Add 'n' comments", (n = 8) => {
     const [container2] = createEnv([]);
     let num = 0;
     for (let i = 0; i < n; i += 1) {

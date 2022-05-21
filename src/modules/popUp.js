@@ -14,7 +14,9 @@ export default class PopUp {
 
     const tags = PopUp.tagsTemplate(this.data.strTags);
     const commentSection = PopUp.commentsTemplate();
-    const instructs = PopUp.instructionsTemplate(this.data.strInstructions);
+    const instructs = PopUp.instructionsTemplate(
+      this.data.strInstructions,
+    );
 
     container.innerHTML = `
       <img class="recipes__popup_image" src="${this.data.strMealThumb}" alt="Delicious ${this.data.strMeal}">
@@ -123,6 +125,7 @@ export default class PopUp {
   static instructionsTemplate(instructs) {
     let newInstructs = '';
     instructs.split(/\r?\n/).forEach((line) => {
+      if (line === '') return;
       newInstructs += `<li class="popup__instructs_line">${line}</li>`;
     });
     return newInstructs;

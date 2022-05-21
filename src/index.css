@@ -132,6 +132,7 @@ span.image {
   padding: 12px;
   border-bottom: 1px solid black;
   color: white;
+  cursor: pointer;
 }
 
 .menu__item img {
@@ -187,6 +188,7 @@ span > i.menu-toggle.hidden {
 
 span > i.menu-toggle {
   display: block;
+  cursor: pointer;
 }
 
 .hero__title {
@@ -325,6 +327,7 @@ span > i.menu-toggle {
   position: fixed;
   top: 0;
   right: 0;
+  cursor: pointer;
 }
 
 .recipes__popup_title {
@@ -390,6 +393,7 @@ ul.recipes__popup_comments {
   background-color: var(--light-green);
   border: 1px solid var(--dark-green);
   border-radius: 5px;
+  min-height: 72px;
   max-height: 216px;
   overflow-y: auto;
   margin: 20px 0;
@@ -513,6 +517,7 @@ footer {
   .menu-toggle {
     color: white !important;
     font-size: 1.3rem !important;
+    cursor: pointer;
   }
 
   .menu__categories {
