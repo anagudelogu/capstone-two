@@ -44,12 +44,18 @@ class App {
   static toggleMenu() {
     document.body.classList.toggle('noScroll');
     document.querySelector('.menu').classList.toggle('active');
+    document.querySelectorAll('.menu-toggle').forEach((icon) => {
+      icon.classList.toggle('hidden');
+    });
   }
 
   static closeMenu() {
     document.body.classList.remove('noScroll');
     document.querySelector('.menu').classList.remove('active');
     document.querySelector('.hero').classList.remove('hidden');
+    const [burger, close] = document.querySelectorAll('span > i.menu-toggle');
+    burger.classList.remove('hidden');
+    close.classList.add('hidden');
   }
 
   static hideLanding() {
@@ -67,7 +73,8 @@ class App {
     const allLikes = await InvolvementAPI.getAllLikes();
     const currentCategory = new CurrentCategory(category);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
-    UserInterface.counterText('Recipes');
+    UserInterface.counterText(`${categoryName} Recipes`);
+    window.scrollTo(0, 0);
     App.hideLanding();
   }
 
@@ -82,7 +89,8 @@ class App {
     const allLikes = await InvolvementAPI.getAllLikes();
     const currentCategory = new CurrentCategory(categories);
     UserInterface.displayRecipes(currentCategory.meals, allLikes);
-    UserInterface.counterText('Recipes');
+    UserInterface.counterText(`${categoryName} Recipes`);
+    window.scrollTo(0, 0);
     App.hideLanding();
     App.toggleMenu();
   }
@@ -106,6 +114,7 @@ class App {
     const card = clickedElement.parentNode.parentNode;
     const mealId = card.getAttribute('id');
     const meal = await MealAPI.getRecipe(mealId);
+    document.body.classList.add('noScroll');
 
     await InvolvementAPI.addComment(
       { username: '', comment: '' },
