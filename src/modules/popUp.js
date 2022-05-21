@@ -14,7 +14,9 @@ export default class PopUp {
 
     const tags = PopUp.tagsTemplate(this.data.strTags);
     const commentSection = PopUp.commentsTemplate();
-    const instructs = PopUp.instructionsTemplate(this.data.strInstructions);
+    const instructs = PopUp.instructionsTemplate(
+      this.data.strInstructions
+    );
 
     container.innerHTML = `
       <img class="recipes__popup_image" src="${this.data.strMealThumb}" alt="Delicious ${this.data.strMeal}">
@@ -36,7 +38,7 @@ export default class PopUp {
       const comment = container.querySelector('textarea');
       const submit = container.querySelector('button');
       const ulContainer = container.querySelector(
-        '.recipes__popup_comments ul',
+        '.recipes__popup_comments ul'
       );
 
       submit.addEventListener('click', async () => {
@@ -49,11 +51,11 @@ export default class PopUp {
           user,
           comment,
           ulContainer,
-          inputComment,
+          inputComment
         );
         await InvolvementAPI.addComment(
           inputComment,
-          this.data.idMeal,
+          this.data.idMeal
         );
         PopUp.commentCountAdd(container);
         [user.value, comment.value] = ['', ''];
@@ -115,7 +117,7 @@ export default class PopUp {
     this.commentCount += 1;
     const commentsNum = this.data.comments.length + this.commentCount;
     container.querySelector(
-      '.recipes__popup_comment-count',
+      '.recipes__popup_comment-count'
     ).innerHTML = `Comments (${commentsNum})`;
     return commentsNum;
   }
@@ -123,6 +125,7 @@ export default class PopUp {
   static instructionsTemplate(instructs) {
     let newInstructs = '';
     instructs.split(/\r?\n/).forEach((line) => {
+      if (line === '') return;
       newInstructs += `<li class="popup__instructs_line">${line}</li>`;
     });
     return newInstructs;
