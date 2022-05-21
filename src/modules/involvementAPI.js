@@ -1,10 +1,6 @@
-// n4Krnxa1GxXHbZ349UMm clean
-// jtXFPXNizRtU5pfZ26sT
-// test: MBxSJyVQ8zQzuxBkwa5m
-
 import FetchRequest from './fetchRequest.js';
 
-const appId = 'jtXFPXNizRtU5pfZ26sT';
+const appId = 'n4Krnxa1GxXHbZ349UMm';
 const urlMAP = {
   main: 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/',
   likes: `${appId}/likes/`,
