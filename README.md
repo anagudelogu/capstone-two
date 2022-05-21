@@ -1,5 +1,7 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
+![view](https://user-images.githubusercontent.com/77069011/169627999-45be81b3-d4bb-47bc-aa04-78bc63584e8c.jpeg)
+
 # Capstone Two - Yummy Recipes - API manipulation & JavaScript project
 
 Recipe webpage that has many meal categories and a lot of options for each one of them. Importing data from a real API and implementing an involvement system that allows the user to like each recipe and to add comments to them.
